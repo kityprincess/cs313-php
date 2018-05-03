@@ -1,0 +1,21 @@
+body {
+	background-color: #ebf0fa;
+}
+.one {
+	font-size: 20px;
+	background-color: #d6e0f5; 
+}
+
+.two {
+	font-size: 24px;
+	background-color: #85a3e0; 
+}
+
+.three {
+	font-size: 28px;
+	background-color: #3366cc; 
+}
+
+.one:hover, .two:hover, .three:hover {
+	font-weight: bold;
+}
