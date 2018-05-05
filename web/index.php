@@ -28,7 +28,6 @@
   	</div><!--dropdown-->
     <br/>
     <?php 
-      date_default_timezone_set("America/Boise")
       echo "Last modified: ".date("F j, Y h:i A",filemtime("index.php"));
     ?>
   	<div class = "intro">
