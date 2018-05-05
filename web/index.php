@@ -28,8 +28,9 @@
   	</div><!--dropdown-->
     <br/>
     <?php 
+      date_default_timezone_set("America/Boise");
       echo "Last modified: ".date("F j, Y h:i A",filemtime("index.php"));
-      echo "MDT";
+      echo " MDT";
     ?>
   	<div class = "intro">
   	<h1>What's the best way to remember things?<br/>Through music of course!</h1>
