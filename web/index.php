@@ -26,9 +26,8 @@
   			<a href="coming.html">Week 14</a>
   		</div><!--content-->
   	</div><!--dropdown-->
+    <br/>
     <?php 
-      echo filemtime("index.php");
-      echo "<br />";
       echo "Last modified: ".date("F d Y H:i:s.",filemtime("index.php"));
     ?>
   	<div class = "intro">
