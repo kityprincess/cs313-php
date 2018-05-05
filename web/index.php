@@ -28,7 +28,8 @@
   	</div><!--dropdown-->
     <br/>
     <?php 
-      echo "Last modified: ".date("F j, Y h:i A",filemtime("index.php")) "MDT";
+      echo "Last modified: ".date("F j, Y h:i A",filemtime("index.php"));
+      echo "MDT";
     ?>
   	<div class = "intro">
   	<h1>What's the best way to remember things?<br/>Through music of course!</h1>
