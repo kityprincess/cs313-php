@@ -8,8 +8,12 @@
 	Email: <a href="<?php echo "mailto:".$_POST["email"]; ?>"><?php echo $_POST["email"]; ?></a><br> 
 	Major: <?php echo $_POST["major"]; ?><br>
 	Comments: <?php echo $_POST["comments"]; ?><br>
-	Continents Visited: <?php echo $_POST["North_America"]; ?><br>
+	Continents Visited:<br> <?php echo $_POST["North_America"]; ?><br>
 	<?php echo $_POST["South_America"]; ?><br>
 	<?php echo $_POST["Europe"]; ?><br>
+	<?php echo $_POST["Asia"]; ?><br>
+	<?php echo $_POST["Australia"]; ?><br>
+	<?php echo $_POST["Africa"]; ?><br>
+	<?php echo $_POST["Antarctica"]; ?><br>
 </body>
 </html>
