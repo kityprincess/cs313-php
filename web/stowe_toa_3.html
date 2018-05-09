@@ -15,6 +15,17 @@
   					Email: 
   					<input type="text" name="email"><br/>
   				</label>
+  				<?php
+            		$major_radio_id = "major-";
+            		$major_radio_abbr = array("cs", "wdd", "cit", "ce");
+            		$major_radio_fullname = array ("Computer Science", "Web Design and Development", "Computer Information Technology", "Computer Engineering");
+        
+            	for($i = 0; $i < sizeof($major_radio_fullname); $i++) {
+                	echo "<input id=" . $major_radio_id . $major_radio_abbr[$i] . " type='radio' name='major' value='" . $major_radio_fullname[$i] . "' required>";
+                	echo "<label for=" . $major_radio_id . $major_radio_abbr[$i] . ">" . $major_radio_fullname[$i] . "</label>";
+            	}
+        		?>
+  				<!--
   				<label>
   					Major:<br/>
   					<input type="radio" name="major" value="Computer Science">Computer Science<br/>
@@ -22,6 +33,7 @@
   					<input type="radio" name="major" value="Computer information Technology">Computer information Technology<br/>
   					<input type="radio" name="major" value="Computer 	Engineering">Computer Engineering<br/>
   				</label>
+  			-->
   				<label>
   					Comments: <br/>
   					<textarea form="form" name="comments"></textarea><br/>
