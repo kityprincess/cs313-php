@@ -40,13 +40,13 @@
   				</label>
   			<p>
   				Continents Visited: <br>
-            	<input type="checkbox" name="North America" value="North America"> North America<br>
-            	<input type="checkbox" name="South America" value="South America"> South America<br>
-            	<input type="checkbox" name="Europe" value="Europe"> Europe<br>
-            	<input type="checkbox" name="Asia" value="Asia"> Asia<br>
-            	<input type="checkbox" name="Australia" value="Australia"> Australia<br>
-            	<input type="checkbox" name="Africa" value="Africa"> Africa<br>
-            	<input type="checkbox" name="Antarctica" value="Antarctica"> Antarctica
+            	<input type="checkbox" name="na" value="North America"> North America<br>
+            	<input type="checkbox" name="sa" value="South America"> South America<br>
+            	<input type="checkbox" name="eu" value="Europe"> Europe<br>
+            	<input type="checkbox" name="as" value="Asia"> Asia<br>
+            	<input type="checkbox" name="au" value="Australia"> Australia<br>
+            	<input type="checkbox" name="af" value="Africa"> Africa<br>
+            	<input type="checkbox" name="an" value="Antarctica"> Antarctica
             </p>
             <input type="submit" value="Submit">
   			</fieldset>
