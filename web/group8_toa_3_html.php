@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  	<title>Stowe TOA Week 03</title>
+  	<title>Group 8 TOA Week 03</title>
   </head>
   <body>
-  		<form action="stowe_toa_3.php" method="post" id="form">
+  		<form action="group8_toa_3.php" method="post" id="form">
   			<fieldset>
   				<label>
   					Name: 
