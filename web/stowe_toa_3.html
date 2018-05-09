@@ -5,8 +5,7 @@
   	<title>Stowe TOA Week 03</title>
   </head>
   <body>
-  	<div class="form"> 
-  		<form action="stowe_toa_3.php" method="post">
+  		<form action="stowe_toa_3.php" method="post" id="form">
   			<fieldset>
   				<label>
   					Name: 
@@ -18,18 +17,17 @@
   				</label>
   				<label>
   					Major:<br/>
-  					<input type="radio" name="major" value="Computer Science">Computer Science<br>
-  					<input type="radio" name="major" value="Web Design and Development">Web Design and Development<br>
-  					<input type="radio" name="major" value="Computer information Technology">Computer information Technology<br>
-  					<input type="radio" name="major" value="Computer 	Engineering">Computer Engineering<br>
+  					<input type="radio" name="major" value="Computer Science">Computer Science<br/>
+  					<input type="radio" name="major" value="Web Design and Development">Web Design and Development<br/>
+  					<input type="radio" name="major" value="Computer information Technology">Computer information Technology<br/>
+  					<input type="radio" name="major" value="Computer 	Engineering">Computer Engineering<br/>
   				</label>
   				<label>
-  					Comments: 
-  					<input type="text" name="comments"><br>
+  					Comments: <br/>
+  					<textarea form="form" name="comments"></textarea><br/>
   				</label>
-  				<input type="submit">
+  				<input type="submit" value="Submit">
   			</fieldset>
   		</form>
-  	</div>
   </body>
   </html>
