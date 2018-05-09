@@ -4,6 +4,7 @@
 	<title>Stowe TOA Week 03 PHP</title>
 </head>
 <body>
+	<?php phpinfo(); ?>
 	Name: <?php echo $_POST["name"]; ?><br>
 	Email: <a href="<?php echo "mailto:".$_POST["email"]; ?>"><?php echo $_POST["email"]; ?></a><br> 
 	Major: <?php echo $_POST["major"]; ?><br>
