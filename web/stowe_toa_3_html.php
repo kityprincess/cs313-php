@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  	<title>Stowe TOA Week 03</title>
+  </head>
+  <body>
+  		<form action="stowe_toa_3.php" method="post" id="form">
+  			<fieldset>
+  				<label>
+  					Name: 
+	  				<input type="text" name="name"><br/>
+  				</label>
+  				<label>
+  					Email: 
+  					<input type="text" name="email"><br/>
+  				</label>
+  				<?php
+            		$major_radio_id = "major-";
+            		$major_radio_abbr = array("cs", "wdd", "cit", "ce");
+            		$major_radio_fullname = array ("Computer Science", "Web Design and Development", "Computer Information Technology", "Computer Engineering");
+        
+            	for($i = 0; $i < sizeof($major_radio_fullname); $i++) {
+                	echo "<input id=" . $major_radio_id . $major_radio_abbr[$i] . " type='radio' name='major' value='" . $major_radio_fullname[$i] . "' required>";
+                	echo "<label for=" . $major_radio_id . $major_radio_abbr[$i] . ">" . $major_radio_fullname[$i] . "</label>";
+            	}
+        		?>
+  				<!--
+  				<label>
+  					Major:<br/>
+  					<input type="radio" name="major" value="Computer Science">Computer Science<br/>
+  					<input type="radio" name="major" value="Web Design and Development">Web Design and Development<br/>
+  					<input type="radio" name="major" value="Computer information Technology">Computer information Technology<br/>
+  					<input type="radio" name="major" value="Computer 	Engineering">Computer Engineering<br/>
+  				</label>
+  			-->
+  				<label>
+  					Comments: <br/>
+  					<textarea form="form" name="comments"></textarea><br/>
+  				</label>
+  			<p>
+  				Continents Visited: <br>
+            	<input type="checkbox" name="North America" value="North America"> North America<br>
+            	<input type="checkbox" name="South America" value="South America"> South America<br>
+            	<input type="checkbox" name="Europe" value="Europe"> Europe<br>
+            	<input type="checkbox" name="Asia" value="Asia"> Asia<br>
+            	<input type="checkbox" name="Australia" value="Australia"> Australia<br>
+            	<input type="checkbox" name="Africa" value="Africa"> Africa<br>
+            	<input type="checkbox" name="Antarctica" value="Antarctica"> Antarctica
+            </p>
+            <input type="submit" value="Submit">
+  			</fieldset>
+  		</form>
+  </body>
+  </html>
