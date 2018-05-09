@@ -9,6 +9,22 @@
 	Major: <?php echo $_POST["major"]; ?><br>
 	Comments: <?php echo $_POST["comments"]; ?><br>
 	Continents Visited:<br> 
+	<?php $continents = array();
+        if(!empty($_POST["continent"])) {
+        foreach($_POST["continent"] as $continent) {
+            array_push($continents, htmlspecialchars($continent));
+            }
+        }
+        else {
+            array_push($continents, "none");
+        } ?>
+    <?php
+        // Stretch #2
+        $continent_codes = array("na" => "North America", "sa" => "South America", "eu" => "Europe", "as" => "Asia", "au" => "Australia", "af" => "Africa", "an" => "Antarctica", "none" => "You've been on an island your whole life!");
+        foreach($continents as $continent)
+            echo "<p>" . $continent_codes[$continent] . "</p>";
+    ?>
+
 
 	<?php /*<?php echo $_POST["North_America"]; ?><br>
 	<?php echo $_POST["South_America"]; ?><br>
