@@ -36,9 +36,9 @@ echo <<<DISP
         <meta http-equiv="X-UA-Compatible" content="IE=9" />
         <head>
             <title>Bubblegum Bonanza</title>
-            <link rel="stylesheet" type="text/css" href="cart.css"/>
+            <link rel="stylesheet" type="text/css" href="./cart.css"/>
             <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"> </script>
-            <script type="text/javascript" src="cart.js"></script>
+            <script type="text/javascript" src="./cart.js"></script>
         </head>
         <body>
           <div id="wrapper">
