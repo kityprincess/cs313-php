@@ -12,7 +12,7 @@
   		<button class="assign">Assignments</button>
   		<div class="content">
   			<a href="assignments.html">All Assignments</a>
-  			<a href="coming.html">Week 3</a>
+  			<a href="week03/browse.php">Week 3</a>
   			<a href="coming.html">Week 4</a>
   			<a href="coming.html">Week 5</a>
   			<a href="coming.html">Week 6</a>
