@@ -1,0 +1,52 @@
+body {
+  background-color:#000;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  min-width:1000px;
+  font-family: "Georgia", Georgia, serif;
+}
+
+#wrapper {
+  position:absolute;
+  top:10px;
+  right:50px;
+  left:50px;
+  min-height:500px;
+  background-color:#999999;
+  border-radius: 15px;
+  padding: 10px 20px;
+}
+
+p {
+	font-size: 20px;
+}
+
+.button {
+  display:inline-block;
+  padding: 2px 20px;
+  background-color:#FFF;
+  border: 1px solid #999;
+  opacity:.6;
+  cursor:pointer;
+  border-radius:7px;
+}
+
+.prod {
+  display:inline-block;
+  width:150px;
+}
+
+.desc {
+  width:600px !important;
+  font-style: italic;
+}
+
+.disp_item {
+  cursor:pointer;
+}
+
+.rem_item {
+	cursor: pointer;
+}
