@@ -4,7 +4,6 @@
   	<meta charset="utf-8">
   	<link rel="stylesheet" type="text/css" href="homepageStyle.css"/>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  	<script src="homepageJS.js"></script>
   	<title>Kimberly's CS313 World</title>
   </head>
   <body>
