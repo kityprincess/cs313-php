@@ -26,7 +26,12 @@ DISP;
     $state = $_POST['state'];
     $zip = $_POST['zip'];
 
-            echo "<p>Order:<br/>\n</p>";
+            echo "<p>Order Details:<br/>\n</p>";
+            echo "<table>";
+            echo "<tr><td><strong>Customer Name:</strong></td><td>$firstName $lastName</td>
+                  <tr><td><strong>Shipping Address:</strong></td><td>$streetAddy<br /> $city, $state $zip <br /></td></tr>";
+            echo "</table>";
+
             $cart_total = 0;
             if(count($_SESSION['cart']) != 0) {
               foreach($_SESSION['cart'] as $key => $value)
