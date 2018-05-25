@@ -6,7 +6,7 @@
 * 
 * Description: Queries PostgreSQL database from PHP.
 ***********************************************************/
-require "dbConnect.php";
+
 $dbUrl = getenv('DATABASE_URL');
 
 $dbopts = parse_url($dbUrl);
@@ -20,8 +20,6 @@ $dbName = ltrim($dbopts["path"],'/');
 $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
 
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-$rows = null;
 ?>
 <!DOCTYPE html>
 <html>
