@@ -20,7 +20,7 @@ if(!empty($_POST['book'])) {
     $book = filter_input(INPUT_POST, 'book', FILTER_SANITIZE_STRING);
     $likeBook = '%' . $book . '%';
 
-    $stmt = $db->prepare('SELECT * FROM scriptures.scriptures WHERE book LIKE :book');
+    $stmt = $db->prepare('SELECT * FROM toa.scriptures WHERE book LIKE :book');
     $stmt->bindValue(':book', $likeBook, PDO::PARAM_STR);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ if(!empty($_POST['book'])) {
 }
 
 else {
-    $stmt = $db->prepare('SELECT * FROM scriptures.scriptures');
+    $stmt = $db->prepare('SELECT * FROM toa.scriptures');
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

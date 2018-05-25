@@ -17,7 +17,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if(!empty($_GET['id'])){
     $scripture_id = $_GET['id'];
 
-    $stmt = $db->prepare('SELECT * FROM scriptures.scriptures WHERE scripture_id = :scripture_id');
+    $stmt = $db->prepare('SELECT * FROM toa.scriptures WHERE scripture_id = :scripture_id');
     $stmt->bindValue(':scripture_id', $scripture_id, PDO::PARAM_INT);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
