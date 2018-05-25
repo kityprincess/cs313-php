@@ -1,6 +1,6 @@
 <?php
 /**********************************************************
-* File: viewRecipes.php
+* File: index.php
 * Author: Kimberly Stowe, based off Br. Burton's
 *         viewScriptures file
 * 
