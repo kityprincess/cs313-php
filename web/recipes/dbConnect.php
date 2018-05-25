@@ -5,7 +5,7 @@
 * 
 * Description: Connect to Heroku DB
 ***********************************************************/
-function get_db() {
+
 	try {
 		// default Heroku Postgres configuration URL
 		$dbUrl = getenv('DATABASE_URL');	
@@ -34,6 +34,4 @@ function get_db() {
 		echo "Error connecting to DB. Details: $ex";
 		die();
 	}
-	return $db;
-}
 ?>
