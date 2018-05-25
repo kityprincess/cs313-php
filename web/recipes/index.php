@@ -69,8 +69,8 @@ foreach($rows as $row) {
 
 <br>
 <form action="index.php" method="post">
-    <strong><label for="book">Book:</label></strong>
-    <input type="text" name="book" id="book">
+    <strong><label for="name">Name:</label></strong>
+    <input type="text" name="name" id="name">
     <input type="submit" value="Search">
 </form>
 ?>
