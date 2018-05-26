@@ -6,6 +6,7 @@
 * 
 * Description: Queries PostgreSQL database from PHP.
 ***********************************************************/
+echo $anything;
 require("dbConnect.php");
 $db = get_db();
 
