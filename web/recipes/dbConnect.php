@@ -5,16 +5,15 @@
 * 
 * Description: Connect to Heroku DB
 ***********************************************************/
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
+function get_db() {
 	try {
 		// default Heroku Postgres configuration URL
-		$dbUrl = getenv('DATABASE_URL');	
+		$dbUrl = getenv('DATABASE_URL');
 		}
 		
 		// Get the various parts of the DB Connection from the URL
 		$dbopts = parse_url($dbUrl);
+
 		$dbHost = $dbopts["host"];
 		$dbPort = $dbopts["port"];
 		$dbUser = $dbopts["user"];
@@ -25,7 +24,7 @@ ini_set("display_errors", 1);
 		$db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
 		
 		// this line makes PDO give us an exception when there are problems, and can be very helpful in debugging!
-		$db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		echo "Connected!";
 	}
@@ -36,4 +35,6 @@ ini_set("display_errors", 1);
 		echo "Error connecting to DB. Details: $ex";
 		die();
 	}
+	return $db;
+}
 ?>
