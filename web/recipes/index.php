@@ -6,7 +6,8 @@
 * 
 * Description: Queries PostgreSQL database from PHP.
 ***********************************************************/
-require ("connectDB.php");
+require("dbConnect.php");
+$db = get_db();
 
 ?>
 
@@ -55,8 +56,6 @@ else {
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-echo '<h1>Recipes</h1>';
 
 foreach($rows as $row) {
     echo '<p>';
