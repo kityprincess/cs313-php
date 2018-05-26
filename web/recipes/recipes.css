@@ -26,6 +26,10 @@ p {
 	text-align: center;
 }
 
+.search {
+	text-align: center;	
+}
+
 a:link {
 	color: #3366cc;
 }
