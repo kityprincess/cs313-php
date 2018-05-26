@@ -13,7 +13,7 @@
   			<a href="assignments.html">All Assignments</a>
   			<a href="week03/browse.php">Week 3</a>
   			<a href="coming.html">Week 4</a>
-  			<a href="coming.html">Week 5</a>
+  			<a href="recipes/index/php">Week 5</a>
   			<a href="coming.html">Week 6</a>
   			<a href="coming.html">Week 7</a>
   			<a href="coming.html">Week 8</a>
