@@ -6,10 +6,20 @@
 * 
 * Description: Queries PostgreSQL database from PHP.
 ***********************************************************/
-require "dbConnect.php";
+$dbUrl = getenv('DATABASE_URL');
 
+$dbopts = parse_url($dbUrl);
+
+$dbHost = $dbopts["host"];
+$dbPort = $dbopts["port"];
+$dbUser = $dbopts["user"];
+$dbPassword = $dbopts["pass"];
+$dbName = ltrim($dbopts["path"],'/');
+
+$db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
+
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,6 +66,8 @@ else {
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+echo '<h1>Recipes</h1>';
+
 foreach($rows as $row) {
     echo '<p>';
     echo '<a href="recipeDetails.php?id=' . $row['name'] . '">';
@@ -72,8 +84,6 @@ foreach($rows as $row) {
     <input type="text" name="name" id="name">
     <input type="submit" value="Search">
 </form>
-?>
-
 
 </div>
 
