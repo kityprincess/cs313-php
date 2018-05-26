@@ -32,8 +32,8 @@ if(!empty($_GET['id'])){
 
     echo '<h1>Recipe Details</h1>';
 
-    var_dump($row)
     foreach($rows as $row) {
+        var_dump($row)
         echo '<p>';
         echo '<strong>' . $row['name'] . '</strong>';
         echo '</p>';
