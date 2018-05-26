@@ -25,7 +25,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if(!empty($_GET['id'])){
     $id = $_GET['id'];
 
-    $stmt = $db->prepare('SELECT * FROM public.recipe WHERE id = :id');
+    $stmt = $db->prepare('SELECT * FROM public.recipe JOIN recipe_ingredients ON (recipe.id = recipe_ingredients.recipe_id) WHERE recipe.id = :id');
     $stmt->bindValue('id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -37,6 +37,8 @@ if(!empty($_GET['id'])){
         echo '<strong>' . $row['name'] . '</strong>';
         echo '</p>';
         echo '<p>';
+        echo $row['ingredients_id'];
+        echo '<br/>';
         echo $row['instructions'];
         echo '</p>';
     }
