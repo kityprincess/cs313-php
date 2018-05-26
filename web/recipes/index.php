@@ -6,19 +6,8 @@
 * 
 * Description: Queries PostgreSQL database from PHP.
 ***********************************************************/
-$dbUrl = getenv('DATABASE_URL');
+require ("connectDB.php");
 
-$dbopts = parse_url($dbUrl);
-
-$dbHost = $dbopts["host"];
-$dbPort = $dbopts["port"];
-$dbUser = $dbopts["user"];
-$dbPassword = $dbopts["pass"];
-$dbName = ltrim($dbopts["path"],'/');
-
-$db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
-
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +18,8 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 <body>
 <div>
+
+<h1>Recipes</h1>
 
 <?php
 // In this example, for simplicity, the query is executed
@@ -52,7 +43,7 @@ if(!empty($_POST['name'])) {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $likeName = '%' . $name . '%';
 
-    $stmt = $db->prepare('SELECT * FROM public.recipe WHERE name LIKE :name');
+    $stmt = $db->prepare('SELECT * FROM public.recipes WHERE name LIKE :name');
     $stmt->bindValue(':name', $likeName, PDO::PARAM_STR);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -75,6 +66,7 @@ foreach($rows as $row) {
 
 
 ?>
+<!-- STRETCH CHALLENGE 01 -->
 
 <br>
 <form action="index.php" method="post">
@@ -82,6 +74,7 @@ foreach($rows as $row) {
     <input type="text" name="name" id="name">
     <input type="submit" value="Search">
 </form>
+?>
 
 
 </div>
