@@ -10,6 +10,8 @@
 function get_db() {
 	$db = NULL;
 
+	echo "Testing";
+
 		// default Heroku Postgres configuration URL
 		$dbUrl = getenv('DATABASE_URL');
 		
