@@ -23,10 +23,10 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if(!empty($_GET['id'])){
-    $recipe_id = $_GET['id'];
+    $id = $_GET['id'];
 
     $stmt = $db->prepare('SELECT * FROM public.recipe WHERE id = :id');
-    $stmt->bindValue('id', $recipe_id, PDO::PARAM_INT);
+    $stmt->bindValue('id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
