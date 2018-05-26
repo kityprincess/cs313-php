@@ -2,26 +2,27 @@ body {
 	background-color: #ebf0fa;
 	background-image: url("mdcooking.jpg");
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	background-position: center;
 }
 
 h1 {
 	font-family: Papyrus, fantasy;
 	font-size: 30px;
-	color: #000000;
+	color: #3366cc;
 	text-align: center;
 }
 
 p {
 	font-family: Goudy Old Style, serif;
 	font-size: 24px;
-	color: #1f3d7a;
+	color: #3366cc;
 }
 
 .aboutUs {
 	font-family: Goudy Old Style, serif;
 	font-size: 24px;
-	color: #3366cc;
+	color: #1f3d7a;
 	text-align: center;
 }
 
