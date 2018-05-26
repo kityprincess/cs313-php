@@ -78,7 +78,7 @@ else {
 
 foreach($rows as $row) {
     echo '<p>';
-    echo '<a href="recipeDetails.php?id=' . $row['recipe_id'] . '">' . $row['name'] . '</a>';
+    echo '<a href="recipeDetails.php?id=' . $row['id'] . '">' . $row['name'] . '</a>';
     echo '</p>';
 }
 ?>
