@@ -31,10 +31,12 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 <h1>Recipes</h1>
 
 <p>
+    <div class = aboutUs>
     Heirloom Recipes is a place where you can store all YOUR recipes. Everything from your grandma's famous pizza to ants on a log for your little one. <br/>
     We make storing and searching your recipes easy. You can search on your recipe's name, ingredients, category, you name it! <br/>
-    Heirloom Recipes is <strong><em>YOUR</strong></em> family's receipes.
-
+    Heirloom Recipes is <strong><em>YOUR</em></strong> family's receipes.
+    </div>
+</p>
 <?php
 // In this example, for simplicity, the query is executed
 // right here and the data echoed out as we iterate the query.

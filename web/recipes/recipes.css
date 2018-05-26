@@ -2,7 +2,7 @@ body {
 	background-color: #ebf0fa;
 	background-image: url("fruit.jpg");
 	background-repeat: no-repeat;
-	background-position: center top;
+	background-position: center center;
 }
 
 h1 {
@@ -16,6 +16,13 @@ p {
 	font-family: Goudy Old Style, serif;
 	font-size: 24px;
 	color: #3366cc;
+}
+
+.aboutUs {
+	font-family: Goudy Old Style, serif;
+	font-size: 24px;
+	color: #3366cc;
+	text-align: center;
 }
 
 a:link {
