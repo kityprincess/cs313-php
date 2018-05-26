@@ -24,6 +24,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 <html>
 <head>
 	<title>Recipes</title>
+    <link rel="stylesheet" type="text/css" href="recipes.css"/>
 </head>
 
 <body>
@@ -74,7 +75,6 @@ foreach($rows as $row) {
 
 
 ?>
-<!-- STRETCH CHALLENGE 01 -->
 
 <br>
 <form action="index.php" method="post">

@@ -1,0 +1,28 @@
+body {
+	background-color: #ebf0fa;
+	background-image: fruit.jpg;
+}
+
+h1 {
+	font-family: Papyrus, fantasy;
+	font-size: 30px;
+	color: #3366cc;
+	text-align: center;
+}
+
+p {
+	font-family: Goudy Old Style, serif;
+	font-size: 24px;
+	color: #3366cc;
+}
+
+a:link {
+	color: #3366cc;
+}
+
+a:visited {
+	color: #85a3e0;
+}
+a:hover {
+	color: #1f3d7a;
+}

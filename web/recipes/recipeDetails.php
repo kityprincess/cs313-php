@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="recipes.css"/>
+    <title>Kimberly's CS313 World</title>
+  </head>
+  <body>
 <?php
 
 $dbUrl = getenv('DATABASE_URL');
@@ -37,4 +45,7 @@ if(!empty($_GET['id'])){
 else {
     echo '<a href="index.php">Recipe not found!</a>';
 }
+?>
 
+    </body>
+</html>
