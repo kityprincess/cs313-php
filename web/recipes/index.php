@@ -38,6 +38,8 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     You can search on your recipe's name, ingredients, category, you name it!<br/>
     Heirloom Recipes is uniquely <strong><em>YOURS</em></strong>!
     </div>
+    <br/>
+    <br/>
 </p>
 <?php
 // In this example, for simplicity, the query is executed
@@ -62,7 +64,7 @@ if(!empty($_POST['name'])) {
     $likeName = '%' . $name . '%';
 
     $stmt = $db->prepare('SELECT * FROM public.recipes WHERE name LIKE :name');
-    $stmt->bindValue(':name', $likeName, PDO::PARAM_STR);
+    $stmt->bindValue('name', $likeName, PDO::PARAM_STR);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
@@ -76,15 +78,13 @@ else {
 
 foreach($rows as $row) {
     echo '<p>';
-    echo '<a href="recipeDetails.php?id=' . $row['name'] . '">';
+    echo '<a href="recipeDetails.php?id=' . $row['name'] . '">' . '</a>';
     echo '</p>';
 }
-
-
 ?>
 
         <br>
-        <form action="index.php" method="post">
+        <form action="index.php" class="search" method="post">
             <strong><label for="name">Name:</label></strong>
             <input type="text" name="name" id="name">
             <input type="submit" value="Search">

@@ -8,13 +8,13 @@ body {
 
 h1 {
 	font-family: Papyrus, fantasy;
-	font-size: 30px;
+	font-size: 40px;
 	color: #3366cc;
 	text-align: center;
 }
 
 p {
-	font-family: Goudy Old Style, serif;
+	font-family: "Times New Roman", Times, serif;
 	font-size: 24px;
 	color: #3366cc;
 }
