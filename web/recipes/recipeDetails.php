@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="recipes.css"/>
-    <title>Kimberly's CS313 World</title>
+    <title>Heirloom Recipes</title>
   </head>
   <body>
 <?php
