@@ -32,9 +32,11 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 <p>
     <div class = aboutUs>
-    Heirloom Recipes is a place where you can store all YOUR recipes. Everything from your grandma's famous pizza to ants on a log for your little one. <br/>
-    We make storing and searching your recipes easy. You can search on your recipe's name, ingredients, category, you name it! <br/>
-    Heirloom Recipes is <strong><em>YOUR</em></strong> family's receipes.
+    Heirloom Recipes is a place where you can store all <strong><em>YOUR</em></strong> favorite recipes!<br/>
+    Everything from your grandma's famous pizza to ants on a log for your little one.<br/>
+    We make storing and searching your recipes easy.<br/>
+    You can search on your recipe's name, ingredients, category, you name it!<br/>
+    Heirloom Recipes is uniquely <strong><em>YOURS</em></strong>!
     </div>
 </p>
 <?php
