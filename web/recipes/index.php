@@ -75,7 +75,6 @@ else {
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-var_dump($rows);
 
 foreach($rows as $row) {
     echo '<p>';
