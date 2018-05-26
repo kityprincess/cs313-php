@@ -25,8 +25,8 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if(!empty($_GET['id'])){
     $recipe_id = $_GET['id'];
 
-    $stmt = $db->prepare('SELECT * FROM public.recipe WHERE recipe_id = :recipe_id');
-    $stmt->bindValue(':recipe_id', $recipe_id, PDO::PARAM_INT);
+    $stmt = $db->prepare('SELECT * FROM public.recipe WHERE id = :id');
+    $stmt->bindValue('id', $recipe_id, PDO::PARAM_INT);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
