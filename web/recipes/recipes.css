@@ -1,6 +1,8 @@
 body {
 	background-color: #ebf0fa;
 	background-image: url("fruit.jpg");
+	background-repeat: no-repeat;
+	background-position: center top;
 }
 
 h1 {
