@@ -37,7 +37,8 @@ if(!empty($_GET['id'])){
         echo '<strong>' . $row['name'] . '</strong>';
         echo '</p>';
         echo '<p>';
-        echo $row['ingredients_id'];
+        // need to echo through all ingredients
+        echo $row['ingredients.name'];
         echo '<br/>';
         echo $row['instructions'];
         echo '</p>';
