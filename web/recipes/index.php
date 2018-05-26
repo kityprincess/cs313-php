@@ -23,14 +23,17 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Recipes</title>
+	<title>Heirloom Recipes</title>
     <link rel="stylesheet" type="text/css" href="recipes.css"/>
 </head>
 
 <body>
-<div>
-
 <h1>Recipes</h1>
+
+<p>
+    Heirloom Recipes is a place where you can store all YOUR recipes. Everything from your grandma's famous pizza to ants on a log for your little one. <br/>
+    We make storing and searching your recipes easy. You can search on your recipe's name, ingredients, category, you name it! <br/>
+    Heirloom Recipes is <strong><em>YOUR</strong></em> family's receipes.
 
 <?php
 // In this example, for simplicity, the query is executed
@@ -76,14 +79,12 @@ foreach($rows as $row) {
 
 ?>
 
-<br>
-<form action="index.php" method="post">
-    <strong><label for="name">Name:</label></strong>
-    <input type="text" name="name" id="name">
-    <input type="submit" value="Search">
-</form>
+        <br>
+        <form action="index.php" method="post">
+            <strong><label for="name">Name:</label></strong>
+            <input type="text" name="name" id="name">
+            <input type="submit" value="Search">
+        </form>
 
-</div>
-
-</body>
+    </body>
 </html>
