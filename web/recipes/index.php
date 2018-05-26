@@ -27,7 +27,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     <link rel="stylesheet" type="text/css" href="recipes.css"/>
 </head>
 
-<body class ="main">
+<body id="main">
 <h1>Recipes</h1>
 
 <p>

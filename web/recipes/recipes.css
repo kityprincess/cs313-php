@@ -2,7 +2,7 @@ body {
 	background-color: #ebf0fa;
 }
 
-body.main {
+body#main {
 	background-image: url("mdcooking.jpg");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
