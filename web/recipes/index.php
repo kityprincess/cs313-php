@@ -75,10 +75,11 @@ else {
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+var_dump($rows);
 
 foreach($rows as $row) {
     echo '<p>';
-    echo '<a href="recipeDetails.php?id=' . $row['name'] . '">' . '</a>';
+    echo '<a href="recipeDetails.php?id=' . $row['recipe_id'] . '">' . $row['name'] . '</a>';
     echo '</p>';
 }
 ?>
