@@ -1,6 +1,6 @@
 body {
 	background-color: #ebf0fa;
-	background-image: fruit.jpg;
+	background-image: url("fruit.jpg");
 }
 
 h1 {
