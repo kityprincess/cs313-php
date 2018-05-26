@@ -44,8 +44,8 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // Notice that we avoid using "SELECT *" here. This is considered
 // good practice so we don't inadvertently bring back data we don't
 // want, especially if the database changes later.
-$statement = $db->prepare("SELECT name FROM recipe");
-$statement->execute();
+//$statement = $db->prepare("SELECT name FROM recipe");
+//$statement->execute();
 // Go through each result
 $rows = null;
 
@@ -65,8 +65,6 @@ else {
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-echo '<h1>Recipes</h1>';
 
 foreach($rows as $row) {
     echo '<p>';
