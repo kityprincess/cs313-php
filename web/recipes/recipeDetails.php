@@ -114,11 +114,11 @@ if(!empty($_GET['id'])){
         echo '<br/>';
     }
 
-    // foreach($rDetails['category'] AS $cat)
-    // {
-    //     echo $cat['description'];
-    //     echo '<br/>';
-    // }
+    foreach($rDetails['category'] AS $cat)
+    {
+        echo $cat['description'];
+        echo '<br/>';
+    }
 
     //     foreach($rDetails['media'] AS $med)
     // {
