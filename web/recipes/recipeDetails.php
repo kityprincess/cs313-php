@@ -111,7 +111,7 @@ if(!empty($_GET['id'])){
     foreach ($rDetails['ingredients'] AS $ing) 
     {
         
-        echo $ing[0]['qty'] . ' ' . $ing[0]['abbr'] . ' ' . $ing[0]['name'];
+        echo $ing['qty'] . ' ' . $ing['abbr'] . ' ' . $ing['name'];
         echo '<br/>';
     }
 
