@@ -110,11 +110,11 @@ if(!empty($_GET['id'])){
         echo '<br/>';
     }
 
-    echo '<br>'
+    echo '<br>';
     
     //echo $rDetails['recipe'][0]['instructions'];
 
-    echo '<br>'
+    echo '<br>';
 
     foreach($rDetails['category'] AS $cat)
     {
@@ -122,11 +122,11 @@ if(!empty($_GET['id'])){
         echo '<br/>';
     }
 
-    //     foreach($rDetails['media'] AS $med)
-    // {
-    //     echo $med['file'];
-    //     echo '<br/>';
-    // }
+        foreach($rDetails['media'] AS $med)
+    {
+        echo $med['file'];
+        echo '<br/>';
+    }
 
 
 
