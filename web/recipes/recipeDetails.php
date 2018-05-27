@@ -99,10 +99,6 @@ if(!empty($_GET['id'])){
 
     $rDetails = getRecipeInfo($db, $id);
 
-    echo '<pre>';
-    echo ''
-    echo '</pre>';
-
     echo '<h1>';
     echo $rDetails['recipe'][0]['name'];
     echo '</h1>';
@@ -126,11 +122,11 @@ if(!empty($_GET['id'])){
         echo '<br/>';
     }
 
-    // foreach($rDetails['media'] AS $med)
-    // {
-    //     echo $med['file'];
-    //     echo '<br/>';
-    // }
+    foreach($rDetails['media'] AS $med)
+    {
+        echo $med['file'];
+        echo '<br/>';
+    }
 
     echo '<a href="index.php">Go back home!</a>';
 
