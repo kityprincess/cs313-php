@@ -109,26 +109,25 @@ if(!empty($_GET['id'])){
 
     echo '<p>';
     foreach ($rDetails['ingredients'] AS $ing) 
-    {
-        
+    { 
         echo $ing['qty'] . ' ' . $ing['abbr'] . ' ' . $ing['name'];
         echo '<br/>';
     }
 
-    // foreach($rDetails['category'] AS $cat)
-    // {
-    //     echo $cat['description'];
-    //     echo '<br/>';
-    // }
+    foreach($rDetails['category'] AS $cat)
+    {
+        echo $cat['description'];
+        echo '<br/>';
+    }
 
-    //     foreach($rDetails['media'] AS $med)
-    // {
-    //     echo $med['file'];
-    //     echo '<br/>';
-    // }
+        foreach($rDetails['media'] AS $med)
+    {
+        echo $med['file'];
+        echo '<br/>';
+    }
 
     echo '</br>'
-    echo $rDetails['recipe'][0]['instructions'];
+    //echo $rDetails['recipe'][0]['instructions'];
 
     echo '</p>';
 
