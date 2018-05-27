@@ -51,7 +51,7 @@ if(!empty($_GET['id'])){
         WHERE
          r.id = :id', $id);
 
-        $recipeInfo['ingredient'] = doOneQuery($db,
+        $recipeInfo['ingredients'] = doOneQuery($db,
         'SELECT
          r.id
         ,i.name
@@ -108,20 +108,20 @@ if(!empty($_GET['id'])){
     echo '</h1>';
 
     echo '<p>';
-    foreach ($rDetails['ingredient'] AS $ing) 
+    foreach ($rDetails['ingredients'] AS $ing) 
     {
         
         echo $ing[0]['qty'] . ' ' . $ing[0]['abbr'] . ' ' . $ing[0]['name'];
         echo '<br/>';
     }
 
-    foreach($rDetails[category] AS $cat)
+    foreach($rDetails['category'] AS $cat)
     {
         echo $cat['c.description'];
         echo '<br/>';
     }
 
-        foreach($rDetails[media] AS $med)
+        foreach($rDetails['media'] AS $med)
     {
         echo $med['m.file'];
         echo '<br/>';
