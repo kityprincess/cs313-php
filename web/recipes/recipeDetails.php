@@ -126,13 +126,13 @@ if(!empty($_GET['id'])){
         echo '<br/>';
     }
 
-        foreach($rDetails['media'] AS $med)
-    {
-        echo $med['file'];
-        echo '<br/>';
-    }
+    // foreach($rDetails['media'] AS $med)
+    // {
+    //     echo $med['file'];
+    //     echo '<br/>';
+    // }
 
-    //echo '<a href="index.php">Go back home!</a>';
+    echo '<a href="index.php">Go back home!</a>';
 
     echo '</p>';
 }
