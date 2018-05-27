@@ -103,34 +103,31 @@ if(!empty($_GET['id'])){
     print_r ($rDetails);
     echo '</pre>';
 
-    //echo '<h1>';
-    // echo $rDetails['r.name'];
-    // echo '</h1>';
+    echo '<h1>';
+    echo $rDetails['recipe'][0]['name'];
+    echo '</h1>';
 
-    // foreach ($rDetails[ingredient] AS $ing) 
-    // {
-    //     echo '<p>';
-    //     echo $ing['ri.qty'];
-    //     echo $ing['u.abbr'];
-    //     echo $ing['i.name'];
+    echo '<p>';
+    foreach ($rDetails['ingredient'] AS $ing) 
+    {
+        
+        echo $ing[0]['qty'] . ' ' . $ing[0]['abbr'] . ' ' . $ing[0]['name'];
+        echo '<br/>';
+    }
 
-    // }
+    foreach($rDetails[category] AS $cat)
+    {
+        echo $cat['c.description'];
+        echo '<br/>';
+    }
 
-    // foreach($rDetails[category] AS $cat)
-    // {
-    //     echo '<p>';
-    //     echo $cat['c.description'];
-    //     echo '<br/>';
-    // }
+        foreach($rDetails[media] AS $med)
+    {
+        echo $med['m.file'];
+        echo '<br/>';
+    }
 
-    //     foreach($rDetails[media] AS $med)
-    // {
-    //     echo '<p>';
-    //     echo $med['m.file'];
-    //     echo '<br/>';
-    // }
-
-
+    echo '</p>';
 
     // echo '<h1>Recipe Details</h1>';
 
