@@ -114,7 +114,7 @@ if(!empty($_GET['id'])){
     
     echo $rDetails['recipe'][0]['instructions'];
 
-    echo '<br>';
+    echo '<br>' . '<br>';
 
     foreach($rDetails['category'] AS $cat)
     {
