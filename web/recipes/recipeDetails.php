@@ -117,15 +117,18 @@ if(!empty($_GET['id'])){
 
     foreach($rDetails['category'] AS $cat)
     {
-        echo $cat['c.description'];
+        echo $cat['description'];
         echo '<br/>';
     }
 
         foreach($rDetails['media'] AS $med)
     {
-        echo $med['m.file'];
+        echo $med['file'];
         echo '<br/>';
     }
+
+    echo '</br>'
+    echo $rDetails['recipe'][0]['instructions'];
 
     echo '</p>';
 
