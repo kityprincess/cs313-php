@@ -110,6 +110,12 @@ if(!empty($_GET['id'])){
         echo '<br/>';
     }
 
+    echo '<br>'
+    
+    echo $rDetails['recipe'][0]['instructions'];
+
+    echo '<br>'
+
     foreach($rDetails['category'] AS $cat)
     {
         echo $cat['description'];
@@ -122,8 +128,7 @@ if(!empty($_GET['id'])){
     //     echo '<br/>';
     // }
 
-    // echo '</br>'
-    // echo $rDetails['recipe'][0]['instructions'];
+
 
     echo '</p>';
 
