@@ -99,6 +99,10 @@ if(!empty($_GET['id'])){
 
     $rDetails = getRecipeInfo($db, $id);
 
+    echo '<pre>';
+    echo ''
+    echo '</pre>';
+
     echo '<h1>';
     echo $rDetails['recipe'][0]['name'];
     echo '</h1>';
@@ -112,7 +116,7 @@ if(!empty($_GET['id'])){
 
     echo '<br>';
     
-    echo $rDetails['recipe'][1]['instructions'];
+    echo $rDetails['recipe']['instructions'];
 
     echo '<br>';
 
@@ -128,23 +132,9 @@ if(!empty($_GET['id'])){
         echo '<br/>';
     }
 
-
+    echo '<a href="index.php">Go back home!</a>';
 
     echo '</p>';
-
-    // echo '<h1>Recipe Details</h1>';
-
-    // foreach($rows as $row) {
-    //     echo '<p>';
-    //     echo '<strong>' . $row['name'] . '</strong>';
-    //     echo '</p>';
-    //     echo '<p>';
-    //     // need to echo through all ingredients
-    //     echo $row['ingredients_id'];
-    //     echo '<br/>';
-    //     echo $row['instructions'];
-    //     echo '</p>';
-    // }
 }
 
 else {
