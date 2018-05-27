@@ -106,6 +106,7 @@ if(!empty($_GET['id'])){
     echo '<p>';
     foreach ($rDetails['ingredients'] AS $ing) 
     { 
+        echo 'Ingredients:' . '<br>';
         echo $ing['qty'] . ' ' . $ing['abbr'] . ' ' . $ing['name'];
         echo '<br/>';
     }
@@ -118,6 +119,7 @@ if(!empty($_GET['id'])){
 
     foreach($rDetails['category'] AS $cat)
     {
+        echo 'Category: ';
         echo $cat['description'];
         echo '<br/>';
     }
