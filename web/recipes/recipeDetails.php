@@ -99,10 +99,6 @@ if(!empty($_GET['id'])){
 
     $rDetails = getRecipeInfo($db, $id);
 
-    echo '<pre>';
-    print_r ($rDetails);
-    echo '</pre>';
-
     echo '<h1>';
     echo $rDetails['recipe'][0]['name'];
     echo '</h1>';
