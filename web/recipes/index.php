@@ -60,7 +60,6 @@ if(!empty($_POST['name'])) {
     $stmt->bindValue(':name', $likeName, PDO::PARAM_STR);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
 }
 
 else {
@@ -74,8 +73,7 @@ foreach($rows as $row) {
     echo '<a href="recipeDetails.php?id=' . $row['id'] . '">' . $row['name'] . '</a>';
     echo '</p>';
 }
-
-echo '<a href="addRecipe.php"> Add a New Recipe!</a>';
 ?>
+<p><a href="addRecipe.php"> Add a New Recipe!</a></p>;
     </body>
 </html>
