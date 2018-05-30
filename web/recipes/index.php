@@ -53,7 +53,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $rows = null;
 
 if(!empty($_POST['search'])) {
-    $name = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
+    $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
     $likeSearch = '%' . $search . '%';
 
     $stmt = $db->prepare('SELECT name FROM public.recipe WHERE name LIKE :search');
