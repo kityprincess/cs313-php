@@ -74,6 +74,8 @@ foreach($rows as $row) {
     echo '<a href="recipeDetails.php?id=' . $row['id'] . '">' . $row['name'] . '</a>';
     echo '</p>';
 }
+
+echo '<a href="addRecipe.php"> Add a New Recipe!</a>;
 ?>
     </body>
 </html>
