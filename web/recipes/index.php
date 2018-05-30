@@ -52,11 +52,14 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $rows = null;
 
+print_r $_POST['name'];
+print_r $rows; 
+
 if(!empty($_POST['name'])) {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $likeName = '%' . $name . '%';
 
-    $stmt = $db->prepare('SELECT name FROM public.recipe WHERE name LIKE :name');
+    $stmt = $db->prepare('SELECT name FROM public.recipe WHERE LOWER(name) LIKE LOWER(:name'));
     $stmt->bindValue(':name', $likeName, PDO::PARAM_STR);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
