@@ -57,7 +57,7 @@ if(!empty($_POST['search'])) {
     $likeSearch = '%' . $search . '%';
 
     $stmt = $db->prepare('SELECT name FROM public.recipe WHERE name LIKE :search');
-    $stmt->bindValue(':name', $likeSearch, PDO::PARAM_STR);
+    $stmt->bindValue(':search', $likeSearch, PDO::PARAM_STR);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
