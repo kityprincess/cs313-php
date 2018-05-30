@@ -64,7 +64,7 @@ if(!empty($_POST['name'])) {
 }
 
 else {
-    $stmt = $db->prepare('SELECT searchName FROM public.recipe');
+    $stmt = $db->prepare('SELECT name FROM public.recipe WHERE name %searchName%');
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
