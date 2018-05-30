@@ -45,26 +45,26 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         <form action="index.php" class="search" method="post">
             <strong><label for="name">Name:</label></strong>
-            <input type="text" name="searchName" id="name">
+            <input type="text" name="search" id="name">
             <input type="submit" value="Search">
         </form>
 <?php
 
 $rows = null;
 
-if(!empty($_POST['name'])) {
+if(!empty($_POST['search'])) {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-    $likeName = '%' . $name . '%';
+    $likeSearch = '%' . $search . '%';
 
-    $stmt = $db->prepare('SELECT name FROM public.recipes WHERE name LIKE :name');
-    $stmt->bindValue('name', $likeName, PDO::PARAM_STR);
+    $stmt = $db->prepare('SELECT name FROM public.recipe WHERE search LIKE :name');
+    $stmt->bindValue(':name', $likeSearch, PDO::PARAM_STR);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
 }
 
 else {
-    $stmt = $db->prepare('SELECT name FROM public.recipe WHERE name %searchName%');
+    $stmt = $db->prepare('SELECT name FROM public.recipe');
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
