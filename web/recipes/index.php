@@ -18,6 +18,7 @@ $dbName = ltrim($dbopts["path"],'/');
 
 $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
 
+$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
 <!DOCTYPE html>
@@ -44,7 +45,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         <form action="index.php" class="search" method="post">
             <strong><label for="name">Name:</label></strong>
-            <input type="text" name="name" id="name">
+            <input type="text" name="searchName" id="name">
             <input type="submit" value="Search">
         </form>
 <?php
@@ -55,7 +56,7 @@ if(!empty($_POST['name'])) {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $likeName = '%' . $name . '%';
 
-    $stmt = $db->prepare('SELECT * FROM public.recipes WHERE name LIKE :name');
+    $stmt = $db->prepare('SELECT name FROM public.recipes WHERE name LIKE :name');
     $stmt->bindValue('name', $likeName, PDO::PARAM_STR);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -63,7 +64,7 @@ if(!empty($_POST['name'])) {
 }
 
 else {
-    $stmt = $db->prepare('SELECT * FROM public.recipe');
+    $stmt = $db->prepare('SELECT searchName FROM public.recipe');
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
