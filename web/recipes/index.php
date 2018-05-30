@@ -75,7 +75,7 @@ foreach($rows as $row) {
     echo '</p>';
 }
 
-echo '<a href="addRecipe.php"> Add a New Recipe!</a>;
+echo '<a href="addRecipe.php"> Add a New Recipe!</a>';
 ?>
     </body>
 </html>
