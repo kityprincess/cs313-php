@@ -6,7 +6,7 @@
     <title>Heirloom Recipes</title>
   </head>
   <body>
-    <h2><a href="index.php">Add a new recipe</a></h2>
+    <h2><a href="addRecipe.php">Add a new recipe</a></h2>
 <?php
 
 $dbUrl = getenv('DATABASE_URL');
@@ -23,6 +23,9 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+<pre>;
+var_dump;
+</pre>;
 
 if(!empty($_GET['id'])){
     $id = $_GET['id'];
