@@ -6,6 +6,7 @@
     <title>Heirloom Recipes</title>
   </head>
   <body>
+    <h2><a href="index.php">Add a new recipe</a></h2>
 <?php
 
 $dbUrl = getenv('DATABASE_URL');

@@ -23,124 +23,48 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if(!empty($_GET['id'])){
-    $id = $_GET['id'];
+  <form action="addRecipes.php" method="post">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name">
+      <input type="submit" value="Search">
+  </form>
 
-    function doOneQuery($db, $query, $id)
-    {
-        $stmt = $db->prepare($query);
-        if ($stmt)
-        {
-            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-            if ($stmt->execute())
-            {
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }
-        }
-        return array();
-    }
+if (isset($_POST['instructions'])) {
+  $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
+  $lines = explode("\r\n", $instructions);
 
-    function getRecipeInfo($db, $id)
-    {
-        $recipeInfo['recipe']   = doOneQuery($db,
-        'SELECT
-         r.id
-        ,r.name
-        ,r.instructions
-        FROM
-         recipe r
-        WHERE
-         r.id = :id', $id);
+  $stmt = $db->prepare('INSERT INTO recipe (instructions) VALUES (:instructions);');
+  $stmt->bindValue('instructions', json_encode($lines));
+  $stmt->execute();
+}
+?>
 
-        $recipeInfo['ingredients'] = doOneQuery($db,
-        'SELECT
-         r.id
-        ,i.name
-        ,ri.qty
-        ,u.description
-        ,u.abbr
-        FROM
-         recipe r
-          INNER JOIN
-         recipe_ingredients ri ON r.id = ri.recipe_id
-          INNER JOIN
-         ingredients i ON i.id = ri.ingredients_id
-          INNER JOIN
-         units u ON u.id = ri.unit_id
-        WHERE
-         r.id = :id', $id);
+<form action="addRecipe.php" method="post">
+  <textarea name="instructions"></textarea>
+  <button>Submit</button>
+</form>
 
-        $recipeInfo['category'] = doOneQuery($db,
-        'SELECT
-         r.id
-        ,c.description
-        FROM
-         recipe r
-          INNER JOIN
-         recipe_category rc ON rc.recipe_id = r.id
-          INNER JOIN
-         category c ON c.id = rc.category_id
-        WHERE
-         r.id = :id', $id);
-        
-        $recipeInfo['media']    = doOneQuery($db,
-        'SELECT
-         r.id
-        ,m.description
-        ,m.file
-        FROM
-         recipe r
-          INNER JOIN
-         media m ON m.recipe_id = r.id
-        WHERE
-         r.id = :id', $id);
+<?php
+$stmt = $db->query('SELECT * FROM recipe');
 
-        return $recipeInfo;
-    }
+while ($row = $stmt->fetch()) {
+  echo '<ul>';
 
-    $rDetails = getRecipeInfo($db, $id);
+  $instructions = json_decode($row['instructions']);
 
-    echo '<h1>';
-    echo $rDetails['recipe'][0]['name'];
-    echo '</h1>';
+  foreach ($instructions as $part) {
+    echo '<li>' . $part . '</li>';
+  }
 
-    echo '<p>';
-    foreach ($rDetails['ingredients'] AS $ing) 
-    { 
-        echo 'Ingredients:' . '<br>';
-        echo $ing['qty'] . ' ' . $ing['abbr'] . ' ' . $ing['name'];
-        echo '<br/>';
-    }
-
-    echo '<br>';
-    
-    echo $rDetails['recipe'][0]['instructions'];
-
-    echo '<br>' . '<br>';
-
-    foreach($rDetails['category'] AS $cat)
-    {
-        echo 'Category: ';
-        echo $cat['description'];
-        echo '<br/>';
-    }
-
-    foreach($rDetails['media'] AS $med)
-    {
-        echo $med['file'];
-        echo '<br/>';
-    }
-
-    echo '<br/>';
-
-    echo '<a href="index.php">Go back home!</a>';
-
-    echo '</p>';
+  echo '</ul>';
 }
 
-else {
-    echo '<a href="index.php">Recipe not found!</a>';
-}
+/*
+CREATE TABLE testing (
+  id SERIAL PRIMARY KEY,
+  data JSONB NOT NULL
+);
+*/
 ?>
 
     </body>

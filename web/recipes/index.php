@@ -44,7 +44,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 </p>
 
         <form action="index.php" class="search" method="post">
-            <strong><label for="name">Name:</label></strong>
+            <strong><label for="name">Recipe:</label></strong>
             <input type="text" name="name" id="name">
             <input type="submit" value="Search">
         </form>
@@ -74,6 +74,6 @@ foreach($rows as $row) {
     echo '</p>';
 }
 ?>
-<p><a href="addRecipe.php"> Add a New Recipe!</a></p>;
+<p><a href="addRecipe.php"> Add a New Recipe!</a></p>
     </body>
 </html>
