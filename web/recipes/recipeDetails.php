@@ -23,9 +23,6 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-<pre>;
-var_dump;
-</pre>;
 
 if(!empty($_GET['id'])){
     $id = $_GET['id'];
