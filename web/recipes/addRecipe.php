@@ -23,23 +23,23 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  <form action="addRecipes.php" method="post">
-      <label for="name">Name:</label>
-      <input type="text" name="name" id="name">
-      <input type="submit" value="Search">
-  </form>
-
 if (isset($_POST['instructions'])) {
   $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
   $lines = explode("\r\n", $instructions);
 
-  $stmt = $db->prepare('INSERT INTO recipe (instructions) VALUES (:instructions);');
+  $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+
+  $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions);');
+  $stmt->bindValue('name', $name);
   $stmt->bindValue('instructions', json_encode($lines));
   $stmt->execute();
 }
 ?>
 
 <form action="addRecipe.php" method="post">
+  <label for="name">Name:</label>
+  <input type="text" name="name" id="name">
+
   <textarea name="instructions"></textarea>
   <button>Submit</button>
 </form>
