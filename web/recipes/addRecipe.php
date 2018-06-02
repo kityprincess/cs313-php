@@ -7,7 +7,7 @@
     <title>Heirloom Recipes</title>
   </head>
   <body>
-<?php
+<?php /*
 
 $dbUrl = getenv('DATABASE_URL');
 
@@ -26,7 +26,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try{ 
   $db->beginTransaction();
-/*insert data into recipe table */
+/*insert data into recipe table 
   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
   $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
   $lines = explode("\r\n", $instructions);
@@ -38,22 +38,22 @@ try{
   $stmt->bindValue('category', $category);
   $stmt->execute();
 
-/*get recipe ID */
+/*get recipe ID 
   $result = $stmt->fetch();
   $recipe_id = $result['id'];
 
-/*insert data into ingredients table */
+/*insert data into ingredients table 
   $quantities  = filter_input(INPUT_POST, 'quantity',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-  $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $units       = filter_input(INPUT_POST, 'unit',       FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+  $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   
   $insertData = array();
 
   for ($i = 0; $i < count($quantities); $i++) {
     array_push($insertData, array(
-    'ingredient' => $ingredients[$i],
-    'unit'       => $units[$i],
     'quantity'   => $quantities[$i]
+    'unit'       => $units[$i],
+    'ingredient' => $ingredients[$i],    
   ));
   }
 
@@ -62,11 +62,11 @@ try{
   $stmt->bindValue('description', json_encode($insertData));
   $stmt->execute();
 
-/*get ingredients ID */
+/*get ingredients ID 
   $result = $stmt->fetch();
   $ingredient_id = $result['id'];
 
-/*insert data into recipe_ingredients table */
+/*insert data into recipe_ingredients table 
   $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
   
   $stmt->bindValue('recipe_id', $recipe_id);
@@ -77,23 +77,6 @@ try{
   var_dump($insertData);
   echo '</pre>';
 
-    /* $ingredient = filter_input(INPUT_POST, 'ingredient', FILTER_SANITIZE_STRING);
-       $data[] = array(ingredient)
-    
-
-    $ingredient = filter_input(INPUT_POST, 'ingredient', FILTER_SANITIZE_STRING);
-    $stmt = $db->prepare('INSERT INTO ingredients (recipe_id, name) VALUES (:recipe_id, :ingredient) RETURING id;')
-
-    foreach ($ingredient as $ingredient) {
-      $stmt->bindValue('recipe_id', $recipe_id);
-      $stmt->bindValue('ingredient', $ingredient)  
-      $stmt->execute();
-
-      $result = $stmt->fetch();
-      $ingredient_id = $result['id'];
-    }
-    */
-
     $db->commit();
   } 
   catch (\PDOException $e) {
@@ -101,14 +84,10 @@ try{
     throw $e;
   }     
 
-/*  if (isset($_POST['']))
-  ('INSERT INTO ingredients (recipe_id, name) VALUES (:recipe_id, :ingredient)')
-  $stmt->bindValue('recipe_ip', $recipe_id);*/
-
   echo '<pre>';
   var_dump($_POST);
   echo '</pre>';
-?>
+*/?>
 
 <div class = "table">
 <form action="addRecipe.php" method="post">
