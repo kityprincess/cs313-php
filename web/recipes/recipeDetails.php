@@ -114,7 +114,7 @@ if(!empty($_GET['id'])){
 
     echo '<br>';
     
-    echo 'Instructions' . '<br/>';
+    echo 'Instructions:' . '<br/>';
     echo $rDetails['recipe'][0]['instructions'];
 
     echo '<br>' . '<br>';

@@ -24,32 +24,38 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-try {
-  $db->beginTransaction();
+$db->beginTransaction();
 
-    if (isset($_POST['name']) && isset($_POST['instructions'])) {
-      $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
-      $lines = explode("\r\n", $instructions);
-      $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+  $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+  $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
+  $lines = explode("\r\n", $instructions);
 
-      $nameVerifyStmt = $db->prepare('SELECT COUNT(name) FROM recipe WHERE LOWER(name) = LOWER(:name)');
-      $nameVerifyStmt->bindValue(':name', $name);
-      $nameVerifyStmt->execute();
-      $nameVerifyStmt = $nameVerifyStmt->fetch();
 
-      if (!$nameVerifyStmt) {
-        $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
-        $stmt->bindValue('name', $name);
-        $stmt->bindValue('instructions', json_encode($lines));
-        $stmt->execute();
+  $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
+  $stmt->bindValue('name', $name);
+  $stmt->bindValue('instructions', json_encode($lines));
+  $stmt->execute();
 
-        $result = $stmt->fetch();
-        $recipe_id = $result['id'];
-      }
-      else {
-        echo '<h2>Recipe already exists</h2>';
-      }
-     }
+  $result = $stmt->fetch();
+  $recipe_id = $result['id'];
+
+  $quantities  = filter_input(INPUT_POST, 'quantity',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+  $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+  $units       = filter_input(INPUT_POST, 'unit',       FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+  
+  $insertData = array();
+
+  for ($i = 0; $i < count($quantities); $i++) {
+    array_push($insertData, array(
+    'ingredient' => $ingredients[$i],
+    'unit'       => $units[$i],
+    'quantity'   => $quantities[$i]
+  ));
+  }
+
+  echo '<pre>';
+  var_dump($insertData);
+  echo '</pre>';
 
     /* $ingredient = filter_input(INPUT_POST, 'ingredient', FILTER_SANITIZE_STRING);
        $data[] = array(ingredient)
@@ -102,14 +108,11 @@ try {
         <tr>
           <td><input type="checkbox" required="required" name="chk[]" checked="checked" />
           </td>
-          <td><label for="qty">Qty:</label>
-              <input type="number" step="any" min="0" name="qty[]" required="required" id="qty">
+          <td><input type="number" min="0" name="qty[]" required="required" id="qty" placeholder="Quantity">
           </td>
-          <td><label for="units">Units:</label>
-              <input type="text" name="units[]" required="required" id="units">
+          <td><input type="text" name="unit[]" required="required" id="unit" placeholder="Unit">
           </td>
-          <td><label for="ingredient">Ingredient:</label>
-              <input type="text" name="ingredient[]" required="required" id="ingredient">
+          <td><input type="text" name="ingredient[]" required="required" id="ingredient" placeholder="Ingredient">
           </td>
         </tr>
       </tbody>
