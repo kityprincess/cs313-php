@@ -89,6 +89,8 @@ if(!empty($_GET['id'])){
     echo '</h1>';
 
     echo '<p>';
+
+    echo $rDetails['ingredients'];
     
     // echo 'Ingredients:' . '<br/>';
     // foreach ($rDetails['ingredients']) AS $ing {
@@ -116,6 +118,7 @@ if(!empty($_GET['id'])){
     //   echo '</ul>';
     // }
 
+    echo 'Category: ' . '<br/>';
     echo $rDetails['recipe'][0]['category'];
 
     // foreach ($rDetails['ingredients'] AS $ing) 
