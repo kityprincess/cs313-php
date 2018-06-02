@@ -26,24 +26,24 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try{ 
   $db->beginTransaction();
-/*insert data into recipe table */
+/*insert data into recipe table 
   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
   $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
   $lines = explode("\r\n", $instructions);
   $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
-  /*$stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');*/
-  $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) RETURNING id;');
+  $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
+  /*$stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) RETURNING id;');
   $stmt->bindValue('name', $name);
   $stmt->bindValue('instructions', json_encode($lines));
   $stmt->bindValue('category', $category);
   $stmt->execute();
 
-/*get recipe ID */
+/*get recipe ID 
   $result = $stmt->fetch();
-  $recipe_id = $result['id'];
+  $recipe_id = $result['id'];*/
 
-/*insert data into ingredients table 
+/*insert data into ingredients table */
   $quantities  = filter_input(INPUT_POST, 'quantity',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $units       = filter_input(INPUT_POST, 'unit',       FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
@@ -63,7 +63,7 @@ try{
   $stmt->bindValue('description', json_encode($insertData));
   $stmt->execute();
 
-/*get ingredients ID 
+/*get ingredients ID */
   $result = $stmt->fetch();
   $ingredient_id = $result['id'];
 
