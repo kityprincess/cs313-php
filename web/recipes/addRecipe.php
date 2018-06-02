@@ -33,16 +33,14 @@ try {
       $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
       $nameVerifyStmt = $db->prepare('SELECT COUNT(name) FROM recipe WHERE LOWER(name) = LOWER(:name)');
-      $nameVerifyStmt->bindValue('name', $name);
+      $nameVerifyStmt->bindValue(':name', $name);
       $nameVerifyStmt->execute();
       $nameVerifyStmt = $nameVerifyStmt->fetch();
 
-      echo 'This is my nameVerify: ' . $nameVerifyStmt[0];
-
       if (!$nameVerifyStmt) {
         $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
-        $stmt->bindValue('name', $name);
-        $stmt->bindValue('instructions', json_encode($lines));
+        $stmt->bindValue(':name', $name);
+        $stmt->bindValue(':instructions', json_encode($lines));
         $stmt->execute();
 
         $result = $stmt->fetch();
@@ -52,6 +50,19 @@ try {
         echo '<h2>Recipe already exists</h2>';
       }
      }
+
+    /*$ingredient = filter_input(INPUT_POST, 'ingredient', FILTER_SANITIZE_STRING);
+    $stmt = $db->prepare('INSERT INTO ingredients (recipe_id, name) VALUES (:recipe_id, :ingredient) RETURING id;')
+
+    foreach ($ingredient as $ingredient) {
+      $stmt->bindValue('recipe_id', $recipe_id);
+      $stmt->bindValue('ingredient', $ingredient)  
+      $stmt->execute();
+
+      $result = $stmt->fetch();
+      $ingredient_id = $result['id'];
+    }
+    */
 
     $db->commit();
   } 
@@ -100,7 +111,7 @@ try {
   <fieldset class="row3">
     <legend>Instructions</legend>
     <label for="Instructions">Put each step on its own line</label>
-    <textarea name="instructions"></textarea>
+    <textarea name="instructions" required="required"></textarea>
   </fieldset>
   <input class="submit" type="submit" value="Add new recipe"/>
 </form>
