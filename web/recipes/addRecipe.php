@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="recipes.css"/>
+    <script type="text/javascript" src="addRecipe.js"></script> 
     <title>Heirloom Recipes</title>
   </head>
   <body>
