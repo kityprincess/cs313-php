@@ -84,9 +84,9 @@ try{
     throw $e;
   }     
 
-  echo '<pre>';
+/*  echo '<pre>';
   var_dump($_POST);
-  echo '</pre>';
+  echo '</pre>';*/
 ?>
 
 <div class = "table">
