@@ -1,6 +1,6 @@
 /**
  * I only modified the alerts as appropriate.
- *res
+ *
  * Projet Name : Dynamic Form Processing with PHP
  * URL: http://techstream.org/Web-Development/PHP/Dynamic-Form-Processing-with-PHP
  *
