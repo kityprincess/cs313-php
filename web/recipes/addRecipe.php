@@ -32,7 +32,7 @@ try {
       $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
       $nameVerify = prepare('SELECT COUNT(name) FROM recipe WHERE LOWER(name) = LOWER(:name)');
-      if (!$nameVerify) {
+      if ($nameVerify == 0) {
         $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
         $stmt->bindValue('name', $name);
          $stmt->bindValue('instructions', json_encode($lines));
