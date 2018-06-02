@@ -101,7 +101,7 @@ if(!empty($_GET['id'])){
     echo '</ul>';
 
     echo 'Instructions: ' . '<br/>';
-    print_r($rDetails['recipe'][0]['instructions']);
+    //print_r($rDetails['recipe'][0]['instructions']);
     //$ins = json_decode($rDetails['recipe'][0]['instructions'], TRUE);
     // echo '<ul>';
     //print_r($ins);
