@@ -64,14 +64,14 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
   ));
   }
 
-//   $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
+   $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
 
-//   $stmt->bindValue('description', json_encode($insertData));
-//   $stmt->execute();
+  $stmt->bindValue('description', json_encode($insertData));
+  $stmt->execute();
 
-// //get ingredients ID 
-//   $result = $stmt->fetch();
-//   $ingredient_id = $result['id'];
+//get ingredients ID 
+  $result = $stmt->fetch();
+  $ingredient_id = $result['id'];
 }
 
   echo '<pre>';
