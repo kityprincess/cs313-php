@@ -32,7 +32,8 @@ try{
   $lines = explode("\r\n", $instructions);
   $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
-  $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
+  /*$stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');*/
+  $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) RETURNING id;');
   $stmt->bindValue('name', $name);
   $stmt->bindValue('instructions', json_encode($lines));
   $stmt->bindValue('category', $category);
