@@ -91,17 +91,21 @@ if(!empty($_GET['id'])){
     echo '<p>';
 
     echo 'Ingredients:' . '<br/>';
-    foreach ($rDetails['ingredients'] AS $ing) {
-      echo '<ul>';
 
-      $ingRows = json_decode($ing['description']);
+    $ingJson = json_decode($rDetails['ingredients']);
 
-      foreach ($ingRows as $part) {
-        echo '<li>' . $part . '</li>';
-    }
+    print_r($ingJson)
+    // foreach ($rDetails['ingredients'] AS $ing) {
+    //   echo '<ul>';
+
+    //   $ingRows = json_decode($ing['description']);
+
+    //   foreach ($ingRows as $part) {
+    //     echo '<li>' . $part . '</li>';
+    // }
       
-      echo '</ul>';
-    }
+    //   echo '</ul>';
+    // }
 
     // echo 'Instructions: ' . '<br/>';
     // foreach ($rDetails['recipe'][0]['instructions'] AS $ins) {
