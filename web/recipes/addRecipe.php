@@ -39,8 +39,8 @@ try {
 
       if (!$nameVerifyStmt) {
         $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
-        $stmt->bindValue(':name', $name);
-        $stmt->bindValue(':instructions', json_encode($lines));
+        $stmt->bindValue('name', $name);
+        $stmt->bindValue('instructions', json_encode($lines));
         $stmt->execute();
 
         $result = $stmt->fetch();
@@ -51,7 +51,11 @@ try {
       }
      }
 
-    /*$ingredient = filter_input(INPUT_POST, 'ingredient', FILTER_SANITIZE_STRING);
+    /* $ingredient = filter_input(INPUT_POST, 'ingredient', FILTER_SANITIZE_STRING);
+       $data[] = array(ingredient)
+    */
+
+    $ingredient = filter_input(INPUT_POST, 'ingredient', FILTER_SANITIZE_STRING);
     $stmt = $db->prepare('INSERT INTO ingredients (recipe_id, name) VALUES (:recipe_id, :ingredient) RETURING id;')
 
     foreach ($ingredient as $ingredient) {
@@ -62,7 +66,7 @@ try {
       $result = $stmt->fetch();
       $ingredient_id = $result['id'];
     }
-    */
+    
 
     $db->commit();
   } 
@@ -75,6 +79,9 @@ try {
   ('INSERT INTO ingredients (recipe_id, name) VALUES (:recipe_id, :ingredient)')
   $stmt->bindValue('recipe_ip', $recipe_id);*/
 
+  echo '<pre>';
+  var_dump($_POST);
+  echo '</pre>';
 ?>
 
 <div class = "table">
