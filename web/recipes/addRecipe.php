@@ -48,8 +48,8 @@ $db->beginTransaction();
 }
 
 //insert data into ingredients table 
-if (isset($_POST['ingredient'])) {
-  $quantities  = filter_input(INPUT_POST, 'quantity',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+if (isset($_POST['qty']) && ($_POST['unit']) && ($_POST['ingredient'])) {
+  $quantities  = filter_input(INPUT_POST, 'qty',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $units       = filter_input(INPUT_POST, 'unit',       FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   
@@ -57,7 +57,7 @@ if (isset($_POST['ingredient'])) {
 
   for ($i = 0; $i < count($quantities); $i++) {
     array_push($insertData, array(
-    'quantity'   => $quantities[$i]
+    'qty'   => $quantities[$i]
     'unit'       => $units[$i],
     'ingredient' => $ingredients[$i],    
   ));
@@ -72,6 +72,7 @@ if (isset($_POST['ingredient'])) {
   $result = $stmt->fetch();
   $ingredient_id = $result['id'];
 }
+
 /*insert data into recipe_ingredients table 
   $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
   
