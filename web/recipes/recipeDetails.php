@@ -92,7 +92,7 @@ if(!empty($_GET['id'])){
 
     echo 'Ingredients:' . '<br/>';
 
-    $ingJson = json_decode($rDetails['ingredients'][0]['description']);
+    $ingJson = json_decode($rDetails['ingredients'][0]['description'], TRUE);
 
     echo '<ul>';
 
