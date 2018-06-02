@@ -29,17 +29,23 @@ try {
     if (isset($_POST['name']) && isset($_POST['instructions'])) {
       $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
       $lines = explode("\r\n", $instructions);
+      $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
-       $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+      $nameVerify = prepare('SELECT COUNT(name) FROM recipe WHERE name = :name');
+      if (!$nameVerify) {
+        $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
+        $stmt->bindValue('name', $name);
+         $stmt->bindValue('instructions', json_encode($lines));
+         $stmt->execute();
 
-      $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
-      $stmt->bindValue('name', $name);
-       $stmt->bindValue('instructions', json_encode($lines));
-       $stmt->execute();
-
-      $result = $stmt->fetch();
-      $recipe_id = $result['id'];
+        $result = $stmt->fetch();
+        $recipe_id = $result['id'];
+      }
+      else {
+        echo 'Recipe already exists';
+      }
      }
+
     $db->commit();
   } 
   catch (\PDOException $e) {
@@ -47,32 +53,9 @@ try {
     throw $e;
   }     
 
-/*try {
-  $db->beginTransaction();
-    if (isset($_POST['name']) && isset($_POST['instructions'])) {
-    $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
-    $lines = explode("\r\n", $instructions);
-
-    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-
-    $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
-    $stmt->bindValue('name', $name);
-    $stmt->bindValue('instructions', json_encode($lines));
-    $stmt->execute();
-
-    /*$result = $stmt->fetch();
-    $recipe_id = $result['id'];*/
-
-
 /*  if (isset($_POST['']))
   ('INSERT INTO ingredients (recipe_id, name) VALUES (:recipe_id, :ingredient)')
   $stmt->bindValue('recipe_ip', $recipe_id);*/
-
-  /*$db->commit();
-  } catch (\PDOException $e) {
-    $db->rollBack();
-    throw $e;
-  }*/
 
 ?>
 
