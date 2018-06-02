@@ -37,7 +37,7 @@ try {
       $nameVerifyStmt->execute();
       $nameVerifyStmt = $nameVerifyStmt->fetch();
 
-      echo $nameVerifyStmt
+      echo 'This is my nameVerify: ' . $nameVerifyStmt;
 
       if (!$nameVerifyStmt) {
         $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
