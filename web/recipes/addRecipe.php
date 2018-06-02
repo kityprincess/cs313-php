@@ -82,7 +82,7 @@ try{
   } 
   catch (\PDOException $e) {
     $db->rollBack();
-    throw $e;
+    echo $e;
   }     
 
 /*  echo '<pre>';
