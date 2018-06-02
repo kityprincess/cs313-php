@@ -58,9 +58,9 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
 
   for ($i = 0; $i < count($quantities); $i++) {
     array_push($insertData, array(
-    'qty'   => $quantities[$i]
+    'qty'   => $quantities[$i],
     'unit'       => $units[$i],
-    'ingredient' => $ingredients[$i],    
+    'ingredient' => $ingredients[$i]  
   ));
   }
 
