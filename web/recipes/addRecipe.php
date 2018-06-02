@@ -7,7 +7,9 @@
     <title>Heirloom Recipes</title>
   </head>
   <body>
-<?php/*
+<?php
+echo "Hello World";
+/*
 
 $dbUrl = getenv('DATABASE_URL');
 
