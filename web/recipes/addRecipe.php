@@ -42,12 +42,13 @@ $db->beginTransaction();
   $stmt->bindValue(':category', $category);
   $stmt->execute();
 
-/*get recipe ID 
+  //get recipe ID
   $result = $stmt->fetch();
-  $recipe_id = $result['id'];*/
+  $recipe_id = $result['id'];
 }
 
 /*insert data into ingredients table 
+if (isset($_POST['ingredient'])) {
   $quantities  = filter_input(INPUT_POST, 'quantity',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $units       = filter_input(INPUT_POST, 'unit',       FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
