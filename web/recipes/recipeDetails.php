@@ -59,7 +59,6 @@ if(!empty($_GET['id'])){
         ,i.name
         ,ri.qty
         ,u.description
-        ,u.abbr
         FROM
          recipe r
           INNER JOIN
@@ -109,7 +108,7 @@ if(!empty($_GET['id'])){
     foreach ($rDetails['ingredients'] AS $ing) 
     { 
         echo 'Ingredients:' . '<br>';
-        echo $ing['qty'] . ' ' . $ing['abbr'] . ' ' . $ing['name'];
+        echo $ing['qty'] . ' ' . $ing['description'] . ' ' . $ing['name'];
         echo '<br/>';
     }
 
