@@ -7,7 +7,7 @@
     <title>Heirloom Recipes</title>
   </head>
   <body>
-<?php
+<?php/*
 
 $dbUrl = getenv('DATABASE_URL');
 
@@ -26,7 +26,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try{ 
   $db->beginTransaction();
-/*insert data into recipe table 
+insert data into recipe table 
   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
   $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
   $lines = explode("\r\n", $instructions);
@@ -43,7 +43,7 @@ try{
   $result = $stmt->fetch();
   $recipe_id = $result['id'];*/
 
-/*insert data into ingredients table */
+/*insert data into ingredients table 
   $quantities  = filter_input(INPUT_POST, 'quantity',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $units       = filter_input(INPUT_POST, 'unit',       FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
@@ -63,7 +63,7 @@ try{
   $stmt->bindValue('description', json_encode($insertData));
   $stmt->execute();
 
-/*get ingredients ID */
+/*get ingredients ID 
   $result = $stmt->fetch();
   $ingredient_id = $result['id'];
 
@@ -77,7 +77,7 @@ try{
   echo '<pre>';
   var_dump($insertData);
   echo '</pre>';
-*/
+
     $db->commit();
   } 
   catch (\PDOException $e) {
