@@ -103,13 +103,13 @@ try {
           <td><input type="checkbox" required="required" name="chk[]" checked="checked" />
           </td>
           <td><label for="qty">Qty:</label>
-              <input type="number" step="any" min="0" name="qty" required="required" id="qty">
+              <input type="number" step="any" min="0" name="qty[]" required="required" id="qty">
           </td>
           <td><label for="units">Units:</label>
-              <input type="text" name="units" required="required" id="units">
+              <input type="text" name="units[]" required="required" id="units">
           </td>
           <td><label for="ingredient">Ingredient:</label>
-              <input type="text" name="ingredient" required="required" id="ingredient">
+              <input type="text" name="ingredient[]" required="required" id="ingredient">
           </td>
         </tr>
       </tbody>
