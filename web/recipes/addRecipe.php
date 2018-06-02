@@ -26,17 +26,24 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try {
   $db->beginTransaction();
+
     if (isset($_POST['name']) && isset($_POST['instructions'])) {
       $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
       $lines = explode("\r\n", $instructions);
       $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
-      $nameVerify = prepare('SELECT COUNT(name) FROM recipe WHERE LOWER(name) = LOWER(:name)');
-      if ($nameVerify == 0) {
+      $nameVerifyStmt = $db->prepare('SELECT COUNT(name) FROM recipe WHERE LOWER(name) = LOWER(:name)');
+      $nameVerifyStmt->bindValue('name', $name);
+      $nameVerifyStmt->execute();
+      $nameVerifyStmt = $nameVerifyStmt->fetch();
+
+      echo $nameVerifyStmt
+
+      if (!$nameVerifyStmt) {
         $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
         $stmt->bindValue('name', $name);
-         $stmt->bindValue('instructions', json_encode($lines));
-         $stmt->execute();
+        $stmt->bindValue('instructions', json_encode($lines));
+        $stmt->execute();
 
         $result = $stmt->fetch();
         $recipe_id = $result['id'];
@@ -56,20 +63,6 @@ try {
 /*  if (isset($_POST['']))
   ('INSERT INTO ingredients (recipe_id, name) VALUES (:recipe_id, :ingredient)')
   $stmt->bindValue('recipe_ip', $recipe_id);*/
-
-?>
-
-<?php /*
-<form action="addRecipe.php" method="post">
-  <label for="name">Name:</label>
-  <input type="text" name="name" id="name">
-
-  <label for="Instructions">Instructions:<br/>Put each step on its own line</label>
-  <textarea name="instructions"></textarea>
-
-  <label for="Qty">Quantity</label>
-  <button>Submit</button>
-</form>*/
 
 ?>
 
@@ -130,13 +123,7 @@ while ($row = $stmt->fetch()) {
 
 /*
 http://www.postgresqltutorial.com/postgresql-php/transaction/
-
-CREATE TABLE testing (
-  id SERIAL PRIMARY KEY,
-  data JSONB NOT NULL
-);
 */
 ?>
-
-    </body>
+  </body>
 </html>
