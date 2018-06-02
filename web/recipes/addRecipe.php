@@ -32,7 +32,7 @@ try {
 
        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
-      $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions);');
+      $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
       $stmt->bindValue('name', $name);
        $stmt->bindValue('instructions', json_encode($lines));
        $stmt->execute();
