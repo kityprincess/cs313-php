@@ -90,31 +90,31 @@ if(!empty($_GET['id'])){
 
     echo '<p>';
     
-    echo 'Ingredients:' . '<br/>';
-    foreach ($rDetails['ingredients']) AS $ing {
-      echo '<ul>';
+    // echo 'Ingredients:' . '<br/>';
+    // foreach ($rDetails['ingredients']) AS $ing {
+    //   echo '<ul>';
 
-      $ing = json_decode($row['description']);
+    //   $ing = json_decode($row['description']);
 
-      foreach ($ing as $part) {
-        echo '<li>' . $part . '</li>';
-      }
+    //   foreach ($ing as $part) {
+    //     echo '<li>' . $part . '</li>';
+    //   }
       
-      echo '</ul>';
-    }
+    //   echo '</ul>';
+    // }
 
-    echo 'Instructions: ' . '<br/>';
-    foreach ($rDetails['recipe'][0]['instructions']) AS $ins {
-      echo '<ul>';
+    // echo 'Instructions: ' . '<br/>';
+    // foreach ($rDetails['recipe'][0]['instructions']) AS $ins {
+    //   echo '<ul>';
 
-      $ins = json_decode($row['instructions']);
+    //   $ins = json_decode($row['instructions']);
 
-      foreach ($ins as $part) {
-        echo '<li>' . $part . '</li>';
-      }
+    //   foreach ($ins as $part) {
+    //     echo '<li>' . $part . '</li>';
+    //   }
       
-      echo '</ul>';
-    }
+    //   echo '</ul>';
+    // }
 
     echo $rDetails['recipe'][0]['category'];
 
