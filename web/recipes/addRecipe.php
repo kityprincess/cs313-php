@@ -24,16 +24,19 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$db->beginTransaction();
+do{ 
+  $db->beginTransaction();
 
   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
   $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
   $lines = explode("\r\n", $instructions);
+  $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
 
-  $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
+  $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
   $stmt->bindValue('name', $name);
   $stmt->bindValue('instructions', json_encode($lines));
+  $stmt->bindValue('category', $category);
   $stmt->execute();
 
   $result = $stmt->fetch();
@@ -52,6 +55,14 @@ $db->beginTransaction();
     'quantity'   => $quantities[$i]
   ));
   }
+
+  $ingLines = explode("\r\n", $insertData);
+
+  $stmt = $db->prepare('INSERT INTO ingredients (recipe_id, description) VALUES (:recipe_id, :insertData) RETURNING id;')
+
+  $stmt->bindValue('recipe_id', $recipe_id);
+  $stmt->bindValue('desription', json_encode($ingLines));
+  $stmt->execute();
 
   echo '<pre>';
   var_dump($insertData);
