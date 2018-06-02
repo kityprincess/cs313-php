@@ -105,15 +105,16 @@ if(!empty($_GET['id'])){
     echo '</h1>';
 
     echo '<p>';
+    echo 'Ingredients:' . '<br/>';
     foreach ($rDetails['ingredients'] AS $ing) 
     { 
-        echo 'Ingredients:' . '<br>';
         echo $ing['qty'] . ' ' . $ing['description'] . ' ' . $ing['name'];
         echo '<br/>';
     }
 
     echo '<br>';
     
+    echo 'Instructions' . '<br/>';
     echo $rDetails['recipe'][0]['instructions'];
 
     echo '<br>' . '<br>';
