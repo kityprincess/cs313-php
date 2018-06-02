@@ -71,12 +71,16 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
 
 //get ingredients ID 
   $result = $stmt->fetch();
+  echo '<pre>';
+  var_dump($result);
+  echo '</pre>';
   $ingredient_id = $result['id'];
 }
 
   echo '<pre>';
   var_dump($_POST);
   echo '</pre>';
+
 //insert data into recipe_ingredients table 
   $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
   
