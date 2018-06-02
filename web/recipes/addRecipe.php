@@ -79,13 +79,13 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     <legend>Ingredients</legend>
     <input type="button" value="Add Ingredient" onClick="addRow('ingTable')" />
     <input type="button" value="Remove Ingredient" onClick="deleteRow('ingTable')" />    
-    <table id="ingTable" class="form" border="1">
+    <table id="ingTable" class="form">
       <tbody>
         <tr>
           <td><input type="checkbox" required="required" name="chk[]" checked="checked" />
           </td>
           <td><label for="qty">Qty:</label>
-              <input type="number" name="qty" required="required" id="qty">
+              <input type="number" step="any" min="0" name="qty" required="required" id="qty">
           </td>
           <td><label for="units">Units:</label>
               <input type="text" name="units" required="required" id="units">
@@ -98,7 +98,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     </table>
   </fieldset>
   <fieldset class="row3">
-    <label for="Instructions">Instructions:<br/>Put each step on a new line</label>
+    <label for="Instructions">Instructions:<br/>Put each step on its own line</label>
     <textarea name="instructions"></textarea>
   </fieldset>
   <input class="submit" type="submit" value="Add new recipe"/>
