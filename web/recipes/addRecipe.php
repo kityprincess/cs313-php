@@ -36,6 +36,8 @@ try {
       $stmt->bindValue('name', $name);
        $stmt->bindValue('instructions', json_encode($lines));
        $stmt->execute();
+
+      $result = $stmt->fetch();
      }
     $db->commit();
   } 
