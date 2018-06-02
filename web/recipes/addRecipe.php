@@ -37,7 +37,7 @@ try {
       $nameVerifyStmt->execute();
       $nameVerifyStmt = $nameVerifyStmt->fetch();
 
-      echo 'This is my nameVerify: ' . $nameVerifyStmt;
+      echo 'This is my nameVerify: ' . $nameVerifyStmt[0];
 
       if (!$nameVerifyStmt) {
         $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
@@ -49,7 +49,7 @@ try {
         $recipe_id = $result['id'];
       }
       else {
-        echo 'Recipe already exists';
+        echo '<h2>Recipe already exists</h2>';
       }
      }
 
