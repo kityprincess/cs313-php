@@ -48,6 +48,7 @@ if(!empty($_GET['id'])){
          r.id
         ,r.name
         ,r.instructions
+        ,r.category
         FROM
          recipe r
         WHERE
@@ -56,30 +57,13 @@ if(!empty($_GET['id'])){
         $recipeInfo['ingredients'] = doOneQuery($db,
         'SELECT
          r.id
-        ,i.name
-        ,ri.qty
-        ,u.description
+        ,i.description
         FROM
-         recipe r
-          INNER JOIN
-         recipe_ingredients ri ON r.id = ri.recipe_id
-          INNER JOIN
-         ingredients i ON i.id = ri.ingredients_id
-          INNER JOIN
-         units u ON u.id = ri.unit_id
-        WHERE
-         r.id = :id', $id);
-
-        $recipeInfo['category'] = doOneQuery($db,
-        'SELECT
-         r.id
-        ,c.description
-        FROM
-         recipe r
-          INNER JOIN
-         recipe_category rc ON rc.recipe_id = r.id
-          INNER JOIN
-         category c ON c.id = rc.category_id
+          recipe r
+            INNER JOIN
+          recipe_ingredients ri ON r.id = ri.recipe_id
+            INNER JOIN
+          ingredients i ON i.id = ri.ingredients_id
         WHERE
          r.id = :id', $id);
         
@@ -105,26 +89,54 @@ if(!empty($_GET['id'])){
     echo '</h1>';
 
     echo '<p>';
-    echo 'Ingredients:' . '<br/>';
-    foreach ($rDetails['ingredients'] AS $ing) 
-    { 
-        echo $ing['qty'] . ' ' . $ing['description'] . ' ' . $ing['name'];
-        echo '<br/>';
-    }
-
-    echo '<br>';
     
-    echo 'Instructions:' . '<br/>';
-    echo $rDetails['recipe'][0]['instructions'];
+    echo 'Ingredients:' . '<br/>';
+    foreach ($rDetails['ingredients']) AS $ing {
+      echo '<ul>';
 
-    echo '<br>' . '<br>';
+      $ing = json_decode($row['description']);
 
-    foreach($rDetails['category'] AS $cat)
-    {
-        echo 'Category: ';
-        echo $cat['description'];
-        echo '<br/>';
+      foreach ($ing as $part) {
+        echo '<li>' . $part . '</li>';
+      }
+      
+      echo '</ul>';
     }
+
+    echo 'Instructions: ' . '<br/>';
+    foreach ($rDetails['recipe'][0]['instructions']) AS $ins {
+      echo '<ul>';
+
+      $ins = json_decode($row['instructions']);
+
+      foreach ($ins as $part) {
+        echo '<li>' . $part . '</li>';
+      }
+      
+      echo '</ul>';
+    }
+
+    echo $rDetails['recipe'][0]['category'];
+
+    // foreach ($rDetails['ingredients'] AS $ing) 
+    // { 
+    //     echo $ing['qty'] . ' ' . $ing['description'] . ' ' . $ing['name'];
+    //     echo '<br/>';
+    // }
+
+    // echo '<br>';
+    
+    // echo 'Instructions:' . '<br/>';
+    // echo $rDetails['recipe'][0]['instructions'];
+
+    // echo '<br>' . '<br>';
+
+    // foreach($rDetails['category'] AS $cat)
+    // {
+    //     echo 'Category: ';
+    //     echo $cat['description'];
+    //     echo '<br/>';
+    // }
 
     foreach($rDetails['media'] AS $med)
     {
