@@ -24,15 +24,27 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+if (isset($_POST['instructions'])) {
+  $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
+  $lines = explode("\r\n", $instructions);
+
+   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+
+  $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions);');
+  $stmt->bindValue('name', $name);
+   $stmt->bindValue('instructions', json_encode($lines));
+   $stmt->execute();
+ }
+
 /*try {
-  $db->beginTransaction();*/
-    if (isset($_POST['instructions'])) {
+  $db->beginTransaction();
+    if (isset($_POST['name']) && isset($_POST['instructions'])) {
     $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
     $lines = explode("\r\n", $instructions);
 
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
-    $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions);');
+    $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
     $stmt->bindValue('name', $name);
     $stmt->bindValue('instructions', json_encode($lines));
     $stmt->execute();
