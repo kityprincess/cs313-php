@@ -24,14 +24,13 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-do{ 
+try{ 
   $db->beginTransaction();
-
+/*insert data into recipe table */
   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
   $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
   $lines = explode("\r\n", $instructions);
   $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
-
 
   $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
   $stmt->bindValue('name', $name);
@@ -39,9 +38,11 @@ do{
   $stmt->bindValue('category', $category);
   $stmt->execute();
 
+/*get recipe ID */
   $result = $stmt->fetch();
   $recipe_id = $result['id'];
 
+/*insert data into ingredients table */
   $quantities  = filter_input(INPUT_POST, 'quantity',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   $units       = filter_input(INPUT_POST, 'unit',       FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
@@ -56,13 +57,21 @@ do{
   ));
   }
 
-  $ingLines = explode("\r\n", $insertData);
+  $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
 
-  $stmt = $db->prepare('INSERT INTO ingredients (recipe_id, description) VALUES (:recipe_id, :insertData) RETURNING id;')
-
-  $stmt->bindValue('recipe_id', $recipe_id);
-  $stmt->bindValue('desription', json_encode($ingLines));
+  $stmt->bindValue('description', json_encode($insertData));
   $stmt->execute();
+
+/*get ingredients ID */
+  $result = $stmt->fetch();
+  $ingredient_id = $result['id'];
+
+/*insert data into recipe_ingredients table */
+  $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
+  
+  $stmt->bindValue('recipe_id', $recipe_id);
+  $stmt->bindValue('ingredient_id', $ingredient_id);
+  $stmt->execute();  
 
   echo '<pre>';
   var_dump($insertData);
