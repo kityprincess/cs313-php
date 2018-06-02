@@ -8,8 +8,7 @@
   </head>
   <body>
 <?php
-echo "Hello World";
-/*
+
 
 $dbUrl = getenv('DATABASE_URL');
 
@@ -26,7 +25,8 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-try{ 
+echo "Hello World";
+/*try{ 
   $db->beginTransaction();
 insert data into recipe table 
   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
