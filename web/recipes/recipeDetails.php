@@ -98,7 +98,7 @@ if(!empty($_GET['id'])){
     }
     echo '</ul>';
 
-    // echo 'Instructions: ' . '<br/>';
+    echo 'Instructions: ' . '<br/>';
     // $jins = json_decode($rDetails['recipe'][0]['instructions'], TRUE);
     // echo '<ul>';
     // foreach ($jins AS $ins) {
