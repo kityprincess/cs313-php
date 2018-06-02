@@ -91,8 +91,7 @@ if(!empty($_GET['id'])){
     echo '<p>';
 
     echo 'Ingredients:' . '<br/>';
-    foreach ($rDetails['ingredients']) AS $ing {
-    echo 'here!';
+    foreach ($rDetails['ingredients'] AS $ing) {
     //   echo '<ul>';
 
     //   $ing = json_decode($row['description']);
