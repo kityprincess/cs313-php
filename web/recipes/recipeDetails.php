@@ -90,17 +90,16 @@ if(!empty($_GET['id'])){
 
     echo '<p>';
 
-    echo $rDetails['ingredients'];
-    
-    // echo 'Ingredients:' . '<br/>';
-    // foreach ($rDetails['ingredients']) AS $ing {
+    echo 'Ingredients:' . '<br/>';
+    foreach ($rDetails['ingredients']) AS $ing {
+    echo 'here!';
     //   echo '<ul>';
 
     //   $ing = json_decode($row['description']);
 
     //   foreach ($ing as $part) {
     //     echo '<li>' . $part . '</li>';
-    //   }
+    }
       
     //   echo '</ul>';
     // }
