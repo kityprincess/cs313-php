@@ -97,9 +97,9 @@ if(!empty($_GET['id'])){
     echo '<ul>';
 
     foreach ($ingJson AS $ing) {
-     echo $ing['qty'] . ' ';
+     echo '<li>' . $ing['qty'] . ' ';
      echo $ing['unit'] . ' ';
-     echo $ing['ingredient'];
+     echo $ing['ingredient'] . '</li>';
     }
 
     echo '</ul>';
