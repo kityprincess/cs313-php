@@ -37,8 +37,8 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt->bindValue('instructions', json_encode($lines));
     $stmt->execute();
 
-    $result = $stmt->fetch();
-    $recipe_id = $result['id'];
+    /*$result = $stmt->fetch();
+    $recipe_id = $result['id'];*/
 
 
 /*  if (isset($_POST['']))
