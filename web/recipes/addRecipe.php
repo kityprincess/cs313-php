@@ -38,6 +38,7 @@ try {
        $stmt->execute();
 
       $result = $stmt->fetch();
+      $recipe_id = $result['id'];
      }
     $db->commit();
   } 
@@ -91,7 +92,7 @@ try {
 
 <div class = "table">
 <form action="addRecipe.php" method="post">
-  <h1>Add your recipe</h1>
+  <h1>Add your recipe - Is this on?</h1>
   <fieldset class="row1">
     <label for="name">Name:</label>
     <input type="text" name="name" required="required" id="name">
