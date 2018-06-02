@@ -36,7 +36,7 @@ $db->beginTransaction();
   $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
   $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
-  //$stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) RETURNING id;');
+
   $stmt->bindValue(':name', $name);
   $stmt->bindValue(':instructions', json_encode($lines));
   $stmt->bindValue(':category', $category);
@@ -64,7 +64,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
   ));
   }
 
-   $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
+  $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
 
   $stmt->bindValue(':insertData', json_encode($insertData));
   $stmt->execute();
@@ -77,7 +77,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
   echo '<pre>';
   var_dump($_POST);
   echo '</pre>';
-/*insert data into recipe_ingredients table 
+//insert data into recipe_ingredients table 
   $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
   
   $stmt->bindValue('recipe_id', $recipe_id);
@@ -86,7 +86,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
 
   echo '<pre>';
   var_dump($insertData);
-  echo '</pre>';*/
+  echo '</pre>';
 
     $db->commit();
   } 
