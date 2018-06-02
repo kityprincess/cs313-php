@@ -48,29 +48,32 @@ $db->beginTransaction();
 }
 
 //insert data into ingredients table 
-if (isset($_POST['qty']) && ($_POST['unit']) && ($_POST['ingredient'])) {
-  $quantities  = filter_input(INPUT_POST, 'qty',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-  $units       = filter_input(INPUT_POST, 'unit',       FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-  $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])) {
+  echo '<pre>';
+  var_dump($_POST);
+  echo '</pre>';
+//   $quantities  = filter_input(INPUT_POST, 'qty',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+//   $units       = filter_input(INPUT_POST, 'unit',       FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+//   $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
   
-  $insertData = array();
+//   $insertData = array();
 
-  for ($i = 0; $i < count($quantities); $i++) {
-    array_push($insertData, array(
-    'qty'   => $quantities[$i]
-    'unit'       => $units[$i],
-    'ingredient' => $ingredients[$i],    
-  ));
-  }
+//   for ($i = 0; $i < count($quantities); $i++) {
+//     array_push($insertData, array(
+//     'qty'   => $quantities[$i]
+//     'unit'       => $units[$i],
+//     'ingredient' => $ingredients[$i],    
+//   ));
+//   }
 
-  $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
+//   $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
 
-  $stmt->bindValue('description', json_encode($insertData));
-  $stmt->execute();
+//   $stmt->bindValue('description', json_encode($insertData));
+//   $stmt->execute();
 
-//get ingredients ID 
-  $result = $stmt->fetch();
-  $ingredient_id = $result['id'];
+// //get ingredients ID 
+//   $result = $stmt->fetch();
+//   $ingredient_id = $result['id'];
 }
 
 /*insert data into recipe_ingredients table 
