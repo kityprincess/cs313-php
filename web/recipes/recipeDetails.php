@@ -91,27 +91,21 @@ if(!empty($_GET['id'])){
     echo '<p>';
 
     echo 'Ingredients:' . '<br/>';
-    $ing = json_decode($rDetails['ingredients'][0]['description'], TRUE);
+    $jing = json_decode($rDetails['ingredients'][0]['description'], TRUE);
     echo '<ul>';
-    foreach ($ing) {
-     echo '<li>' . $ing['qty'] . ' ';
-     echo $ing['unit'] . ' ';
-     echo $ing['ingredient'] . '</li>';
+    foreach ($jing AS $ing) {
+     echo '<li>' . $ing['qty'] . ' ' . $ing['unit'] . ' ' . $ing['ingredient'] . '</li>';
     }
     echo '</ul>';
 
     echo 'Instructions: ' . '<br/>';
-    //print_r($rDetails['recipe'][0]['instructions']);
-    //$ins = json_decode($rDetails['recipe'][0]['instructions'], TRUE);
-    // echo '<ul>';
-    //print_r($ins);
-    // foreach ($ins) {
-      
-    //     echo '<li>' . $part . '</li>';
-    //   }
-      
-    //   echo '</ul>';
-    // }
+    $jins = json_decode($rDetails['recipe'][0]['instructions'], TRUE);
+    echo '<ul>';
+    foreach ($jins AS $ins) {
+      echo '<li>' . $ing . '</li>';
+      }
+      echo '</ul>';
+    }
 
     echo 'Category: ' . '<br/>';
     echo $rDetails['recipe'][0]['category'];
