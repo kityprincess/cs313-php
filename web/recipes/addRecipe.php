@@ -53,7 +53,7 @@ try {
 
     /* $ingredient = filter_input(INPUT_POST, 'ingredient', FILTER_SANITIZE_STRING);
        $data[] = array(ingredient)
-    */
+    
 
     $ingredient = filter_input(INPUT_POST, 'ingredient', FILTER_SANITIZE_STRING);
     $stmt = $db->prepare('INSERT INTO ingredients (recipe_id, name) VALUES (:recipe_id, :ingredient) RETURING id;')
@@ -66,7 +66,7 @@ try {
       $result = $stmt->fetch();
       $ingredient_id = $result['id'];
     }
-    
+    */
 
     $db->commit();
   } 
