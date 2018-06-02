@@ -34,7 +34,7 @@ try{
   $lines = explode("\r\n", $instructions);
   $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
-//$db->beginTransaction();
+$db->beginTransaction();
   //$stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
   /*$stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) RETURNING id;');
   $stmt->bindValue('name', $name);
@@ -79,12 +79,12 @@ try{
 
   echo '<pre>';
   var_dump($insertData);
-  echo '</pre>';
+  echo '</pre>';*/
 
-    $db->commit();*/
+    $db->commit();
   } 
   catch (\PDOException $e) {
-    //$db->rollBack();
+    $db->rollBack();
     echo $e;
   }     
 
