@@ -103,8 +103,8 @@ if(!empty($_GET['id'])){
         echo '<li>' . $part . '</li>';
     }
       
-    //   echo '</ul>';
-    // }
+      echo '</ul>';
+    }
 
     // echo 'Instructions: ' . '<br/>';
     // foreach ($rDetails['recipe'][0]['instructions'] AS $ins) {
