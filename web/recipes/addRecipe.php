@@ -53,7 +53,6 @@ try {
 
 ?>
 
-<?php /*
 <form action="addRecipe.php" method="post">
   <label for="name">Name:</label>
   <input type="text" name="name" id="name">
@@ -64,8 +63,8 @@ try {
   <label for="Qty">Quantity</label>
   <button>Submit</button>
 </form>
-*/?>
 
+<?php /*
 <form action="addRecipe.php" method="post">
   <h1>Add your recipe</h1>
   <fieldset class="row1">
@@ -101,7 +100,8 @@ try {
     <textarea name="instructions"></textarea>
   </fieldset>
   <input class="submit" type="submit" value="Add new recipe"/>
-</form>
+</form>*/
+?>
 
 <?php
 $stmt = $db->query('SELECT * FROM recipe');
