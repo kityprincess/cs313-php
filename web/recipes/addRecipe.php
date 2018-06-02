@@ -25,16 +25,17 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-echo "Hello World";
-/*try{ 
-  $db->beginTransaction();
-insert data into recipe table 
+try{ 
+  
+
+/*insert data into recipe table */
   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
   $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
   $lines = explode("\r\n", $instructions);
   $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
-  $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
+//$db->beginTransaction();
+  //$stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
   /*$stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) RETURNING id;');
   $stmt->bindValue('name', $name);
   $stmt->bindValue('instructions', json_encode($lines));
@@ -80,10 +81,10 @@ insert data into recipe table
   var_dump($insertData);
   echo '</pre>';
 
-    $db->commit();
+    $db->commit();*/
   } 
   catch (\PDOException $e) {
-    $db->rollBack();
+    //$db->rollBack();
     echo $e;
   }     
 
