@@ -24,8 +24,8 @@ $db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPass
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-try {
-  $db->beginTransaction();
+/*try {
+  $db->beginTransaction();*/
     if (isset($_POST['name']) && isset($_POST['instructions'])) {
     $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
     $lines = explode("\r\n", $instructions);
@@ -45,11 +45,11 @@ try {
   ('INSERT INTO ingredients (recipe_id, name) VALUES (:recipe_id, :ingredient)')
   $stmt->bindValue('recipe_ip', $recipe_id);*/
 
-  $db->commit();
+  /*$db->commit();
   } catch (\PDOException $e) {
     $db->rollBack();
     throw $e;
-  }
+  }*/
 
 ?>
 
