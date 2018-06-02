@@ -72,7 +72,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
 //get ingredients ID 
   $iResult = $stmt->fetch();
   echo '<pre>';
-  var_dump($result);
+  var_dump($iResult);
   echo '</pre>';
   $ingredient_id = $result['id'];
 }
