@@ -7,7 +7,7 @@
     <title>Heirloom Recipes</title>
   </head>
   <body>
-<?php /*
+<?php
 
 $dbUrl = getenv('DATABASE_URL');
 
@@ -26,7 +26,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try{ 
   $db->beginTransaction();
-/*insert data into recipe table 
+/*insert data into recipe table */
   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
   $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
   $lines = explode("\r\n", $instructions);
@@ -38,7 +38,7 @@ try{
   $stmt->bindValue('category', $category);
   $stmt->execute();
 
-/*get recipe ID 
+/*get recipe ID */
   $result = $stmt->fetch();
   $recipe_id = $result['id'];
 
@@ -76,7 +76,7 @@ try{
   echo '<pre>';
   var_dump($insertData);
   echo '</pre>';
-
+*/
     $db->commit();
   } 
   catch (\PDOException $e) {
@@ -87,11 +87,11 @@ try{
   echo '<pre>';
   var_dump($_POST);
   echo '</pre>';
-*/?>
+?>
 
 <div class = "table">
 <form action="addRecipe.php" method="post">
-  <h1>Add your recipe - Is this on?</h1>
+  <h1>Add your recipe</h1>
   <fieldset class="row1">
     <label for="name">Name:</label>
     <input type="text" name="name" required="required" id="name">
