@@ -53,6 +53,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 ?>
 
+<?php /*
 <form action="addRecipe.php" method="post">
   <label for="name">Name:</label>
   <input type="text" name="name" id="name">
@@ -62,9 +63,10 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   <label for="Qty">Quantity</label>
   <button>Submit</button>
-</form>
+</form>*/
 
-<?php /*
+?>
+
 <form action="addRecipe.php" method="post">
   <h1>Add your recipe</h1>
   <fieldset class="row1">
@@ -100,8 +102,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     <textarea name="instructions"></textarea>
   </fieldset>
   <input class="submit" type="submit" value="Add new recipe"/>
-</form>*/
-?>
+</form>
 
 <?php
 $stmt = $db->query('SELECT * FROM recipe');
