@@ -75,7 +75,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
   var_dump($iResult);
   echo 'Recipe ID: ' . var_dump($recipe_id);
   echo '</pre>';
-  $ingredients_id = $result['id'];
+  $ingredients_id = $iResult['id'];
 }
 
   // echo '<pre>';
