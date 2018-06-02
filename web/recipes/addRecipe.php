@@ -25,14 +25,14 @@ $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 /*try {
-  $db->beginTransaction();
+  $db->beginTransaction();*/
     if (isset($_POST['name']) && isset($_POST['instructions'])) {
     $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
     $lines = explode("\r\n", $instructions);
 
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
-    $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions) RETURNING id;');
+    $stmt = $db->prepare('INSERT INTO recipe (name, instructions) VALUES (:name, :instructions);');
     $stmt->bindValue('name', $name);
     $stmt->bindValue('instructions', json_encode($lines));
     $stmt->execute();
@@ -99,7 +99,8 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     </table>
   </fieldset>
   <fieldset class="row3">
-    <label for="Instructions">Instructions:<br/>Put each step on its own line</label>
+    <legend>Instructions</legend>
+    <label for="Instructions">Put each step on its own line</label>
     <textarea name="instructions"></textarea>
   </fieldset>
   <input class="submit" type="submit" value="Add new recipe"/>
