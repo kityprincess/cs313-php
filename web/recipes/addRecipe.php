@@ -73,6 +73,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
   $iResult = $stmt->fetch();
   echo '<pre>';
   var_dump($iResult);
+  echo 'Recipe ID: ' . var_dump($recipe_id);
   echo '</pre>';
   $ingredient_id = $result['id'];
 }
@@ -82,11 +83,14 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
   // echo '</pre>';
 
 //insert data into recipe_ingredients table 
+  if (isset($recipe_id) && isset($ingredient_id)){
+
   $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
   
   $stmt->bindValue('recipe_id', $recipe_id);
   $stmt->bindValue('ingredient_id', $ingredient_id);
   $stmt->execute();  
+}
 
   // echo '<pre>';
   // var_dump($insertData);
