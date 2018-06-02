@@ -94,15 +94,14 @@ if(!empty($_GET['id'])){
 
     $ingJson = json_decode($rDetails['ingredients'][0]['description']);
 
-    print_r($ingJson);
-    // foreach ($rDetails['ingredients'] AS $ing) {
-    //   echo '<ul>';
+    foreach ($ingJson AS $ing) {
+      echo '<ul>';
 
     //   $ingRows = json_decode($ing['description']);
 
-    //   foreach ($ingRows as $part) {
-    //     echo '<li>' . $part . '</li>';
-    // }
+    foreach ($ing as $part) {
+        echo '<li>' . $part . '</li>';
+    }
       
     //   echo '</ul>';
     // }
