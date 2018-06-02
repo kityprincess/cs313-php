@@ -25,7 +25,7 @@ $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try {
-  $pdo->beginTransaction();
+  $db->beginTransaction();
     if (isset($_POST['name']) && isset($_POST['instructions'])) {
     $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
     $lines = explode("\r\n", $instructions);
