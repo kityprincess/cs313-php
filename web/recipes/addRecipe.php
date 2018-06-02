@@ -26,15 +26,15 @@ $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 try{ 
-  
+$db->beginTransaction();  
 
 /*insert data into recipe table */
+  if (isset($_POST['name']) && isset($_POST['instructions'])) {
   $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
   $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
   $lines = explode("\r\n", $instructions);
   $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
-$db->beginTransaction();
   $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
   /*$stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) RETURNING id;');*/
   $stmt->bindValue(':name', $name);
@@ -45,6 +45,7 @@ $db->beginTransaction();
 /*get recipe ID 
   $result = $stmt->fetch();
   $recipe_id = $result['id'];*/
+}
 
 /*insert data into ingredients table 
   $quantities  = filter_input(INPUT_POST, 'quantity',   FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
