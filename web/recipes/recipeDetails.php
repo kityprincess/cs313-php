@@ -111,11 +111,11 @@ if(!empty($_GET['id'])){
     echo $rDetails['recipe'][0]['category'];
     echo '<br/>'
 
-    foreach($rDetails['media'] AS $med)
-    {
-        echo $med['file'];
-        echo '<br/>';
-    }
+    // foreach($rDetails['media'] AS $med)
+    // {
+    //     echo $med['file'];
+    //     echo '<br/>';
+    // }
 
     echo '<br/>';
 
