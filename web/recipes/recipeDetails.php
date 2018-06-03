@@ -100,8 +100,8 @@ if(!empty($_GET['id'])){
 
     echo 'Instructions: ' . '<br/>';
     $jins = json_decode($rDetails['recipe'][0]['instructions'], TRUE);
-    
-    echo '<ul>';
+    print_r($jins);
+    echo '<ul>'
     foreach ($jins as $part) {
       echo '<li>' . $part . '</li>';
     }
@@ -116,7 +116,7 @@ if(!empty($_GET['id'])){
 
     echo 'Category: ' . '<br/>';
     echo $rDetails['recipe'][0]['category'];
-    echo '<br/>'
+
     // foreach ($rDetails['ingredients'] AS $ing) 
     // { 
     //     echo $ing['qty'] . ' ' . $ing['description'] . ' ' . $ing['name'];
