@@ -101,42 +101,14 @@ if(!empty($_GET['id'])){
     echo 'Instructions: ' . '<br/>';
     $jins = json_decode($rDetails['recipe'][0]['instructions']);
     
-    //echo '<ul>'
-
     foreach ($jins as $part) {
       echo '<li>' . $part . '</li>';
     }
     
-    
-    // echo '<ul>';
-    // foreach ($jins AS $ins) {
-    //   echo '<li>' . $ins . '</li>';
-    //   }
-    //   echo '</ul>';
-    // }
+   echo '<br/>';
 
     echo 'Category: ' . '<br/>';
     echo $rDetails['recipe'][0]['category'];
-
-    // foreach ($rDetails['ingredients'] AS $ing) 
-    // { 
-    //     echo $ing['qty'] . ' ' . $ing['description'] . ' ' . $ing['name'];
-    //     echo '<br/>';
-    // }
-
-    // echo '<br>';
-    
-    // echo 'Instructions:' . '<br/>';
-    // echo $rDetails['recipe'][0]['instructions'];
-
-    // echo '<br>' . '<br>';
-
-    // foreach($rDetails['category'] AS $cat)
-    // {
-    //     echo 'Category: ';
-    //     echo $cat['description'];
-    //     echo '<br/>';
-    // }
 
     foreach($rDetails['media'] AS $med)
     {
@@ -150,11 +122,9 @@ if(!empty($_GET['id'])){
 
     echo '</p>';
 }
-
 else {
     echo '<a href="index.php">Recipe not found!</a>';
 }
 ?>
-
-    </body>
+  </body>
 </html>
