@@ -87,9 +87,9 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
 
     $db->commit();
 
-    $row = $stmt->fetch();
-    echo "Congratulations! Your recipe has been entered!";
-    echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $row['name'] . '</a>';
+    //$row = $stmt->fetch();
+    echo 'Congratulations! Your recipe has been entered!';
+    echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $recipe_id . '</a>';
   } 
   catch (Exception $e) {
     $db->rollBack();
@@ -135,19 +135,19 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
 </div>
 
 <?php
-$stmt = $db->query('SELECT * FROM recipe');
+// $stmt = $db->query('SELECT * FROM recipe');
 
-while ($row = $stmt->fetch()) {
-  echo '<ul>';
+// while ($row = $stmt->fetch()) {
+//   echo '<ul>';
 
-  $instructions = json_decode($row['instructions']);
+//   $instructions = json_decode($row['instructions']);
 
-  foreach ($instructions as $part) {
-    echo '<li>' . $part . '</li>';
-  }
+//   foreach ($instructions as $part) {
+//     echo '<li>' . $part . '</li>';
+//   }
 
-  echo '</ul>';
-}
+//   echo '</ul>';
+// }
 ?>
   </body>
 </html>
