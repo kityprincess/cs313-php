@@ -106,16 +106,42 @@ if(!empty($_GET['id'])){
       echo '<li>' . $part . '</li>';
     }
     echo '</ul>';
+    
+    // echo '<ul>';
+    // foreach ($jins AS $ins) {
+    //   echo '<li>' . $ing . '</li>';
+    //   }
+    //   echo '</ul>';
+    // }
 
     echo 'Category: ' . '<br/>';
     echo $rDetails['recipe'][0]['category'];
     echo '<br/>'
-
-    // foreach($rDetails['media'] AS $med)
-    // {
-    //     echo $med['file'];
+    // foreach ($rDetails['ingredients'] AS $ing) 
+    // { 
+    //     echo $ing['qty'] . ' ' . $ing['description'] . ' ' . $ing['name'];
     //     echo '<br/>';
     // }
+
+    // echo '<br>';
+    
+    // echo 'Instructions:' . '<br/>';
+    // echo $rDetails['recipe'][0]['instructions'];
+
+    // echo '<br>' . '<br>';
+
+    // foreach($rDetails['category'] AS $cat)
+    // {
+    //     echo 'Category: ';
+    //     echo $cat['description'];
+    //     echo '<br/>';
+    // }
+
+    foreach($rDetails['media'] AS $med)
+    {
+        echo $med['file'];
+        echo '<br/>';
+    }
 
     echo '<br/>';
 
@@ -128,5 +154,6 @@ else {
     echo '<a href="index.php">Recipe not found!</a>';
 }
 ?>
+
     </body>
 </html>
