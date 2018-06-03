@@ -115,7 +115,7 @@ if(!empty($_GET['id'])){
         echo $med['file'];
         echo '<br/>';
     }
-
+    echo '</p>';
     echo '<br/>';
 
     echo '<a href="index.php">Go back home!</a>';
