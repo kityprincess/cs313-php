@@ -87,9 +87,9 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
 
     $db->commit();
 
-    $row = $stmt->fetch();
+    //$row = $stmt->fetch();
     echo "Congratulations! Your recipe has been entered!"
-    echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $row['name'] . '</a>';
+    //echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $row['name'] . '</a>';
   } 
   catch (Exception $e) {
     $db->rollBack();
