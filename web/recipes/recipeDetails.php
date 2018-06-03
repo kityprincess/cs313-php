@@ -102,18 +102,18 @@ if(!empty($_GET['id'])){
     $jins = json_decode($rDetails['recipe'][0]['instructions'], TRUE);
     print_r($jins);
     //echo '<ul>'
-    foreach ($jins as $part) {
-      print_r($part);
-       //echo '<li>' . $part . '</li>';
-     }
-    echo '</ul>';
+    // foreach ($jins as $part) {
+    //   print_r($part);
+    //    //echo '<li>' . $part . '</li>';
+    //  }
+    // echo '</ul>';
     
-    // echo '<ul>';
-    // foreach ($jins AS $ins) {
-    //   echo '<li>' . $ing . '</li>';
-    //   }
-    //   echo '</ul>';
-    // }
+    echo '<ul>';
+    foreach ($jins AS $ins) {
+      echo '<li>' . $ins . '</li>';
+      }
+      echo '</ul>';
+    }
 
     echo 'Category: ' . '<br/>';
     echo $rDetails['recipe'][0]['category'];
