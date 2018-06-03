@@ -101,11 +101,12 @@ if(!empty($_GET['id'])){
     echo 'Instructions: ' . '<br/>';
     $jins = json_decode($rDetails['recipe'][0]['instructions'], TRUE);
     print_r($jins);
-    // echo '<ul>'
-    // foreach ($jins as $part) {
-    //    echo '<li>' . $part . '</li>';
-    //  }
-    // echo '</ul>';
+    //echo '<ul>'
+    foreach ($jins as $part) {
+      print_r($part);
+       //echo '<li>' . $part . '</li>';
+     }
+    echo '</ul>';
     
     // echo '<ul>';
     // foreach ($jins AS $ins) {
