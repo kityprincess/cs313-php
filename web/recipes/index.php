@@ -75,5 +75,6 @@ foreach($rows as $row) {
 }
 ?>
 <p><a href="addRecipe.php"> Add a New Recipe!</a></p>
+<p><a href="deleteRecipe.php"> Delete a Recipe!</a></p>
     </body>
 </html>
