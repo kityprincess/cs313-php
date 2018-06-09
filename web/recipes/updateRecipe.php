@@ -68,15 +68,15 @@ if(!empty($_GET['id'])){
 	$db->beginTransaction();  
 
 	//update name
-	  // if (isset($_POST['name']) {
-	  // 	echo $id;
+	  if (isset($_POST['name']) {
+	  	echo $id;
 		// $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
 		// $stmt = $db->prepare('UPDATE recipe SET name = :name WHERE id = :id;');
 
 		// $stmt->bindValue(':name', $name);
 		// $stmt->execute();  
-	//}
+	}
 
 //insert data into recipe table
   if (isset($_POST['name']) && isset($_POST['instructions'])) {
