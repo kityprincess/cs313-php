@@ -148,10 +148,12 @@ if(!empty($_GET['id'])){
 // 	  }
 // }
 ?>
-    <div class = "table">
-      <form action="addRecipe.php" method="post">
-          <h3>Update your recipe</h3>
+        <div class = "table">
+      <form action="updateRecipe.php" method="post">
+          <h1>Update your recipe</h1>
           <fieldset class="row1">
+            <label for="name">Name:</label>
+            <input type="text" name="name" required="required" id="name">
             <label for="category">Category:</label>
             <input type="text" name="category" id="category">
           </fieldset>
