@@ -80,7 +80,8 @@ if(!empty($_GET['id'])){
 		//update category
 	  if (isset($_POST['category'])) {
 	  	$category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
-
+	  	echo $category;
+	  	echo $id;
 	  	$stmt = $db->prepare('UPDATE recipe SET category = :category WHERE id = :id;');
 
 		  $stmt->bindValue(':category', $category);
