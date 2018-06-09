@@ -32,12 +32,12 @@ if(!empty($_GET['id'])){
   try{ 
 
 
-    // $db->beginTransaction();  
+    $db->beginTransaction();  
 
-    // //delete from recipe
-    // $stmt = $db->prepare('DELETE FROM recipe WHERE id = :id');
-    // $stmt->bindValue(':id', $id);
-    // $stmt->execute();
+    //delete from recipe
+    $stmt = $db->prepare('DELETE FROM recipe WHERE id = :id');
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
 
     // //delete from recipe_ingredients
     // $stmt = $db->prepare('DELETE FROM recipe_ingredients WHERE recipe_id = :id RETURNING ingredients_id; ');
@@ -53,12 +53,13 @@ if(!empty($_GET['id'])){
     // $stmt->bindValue(':ingredients_id', $ingredients_id);
     // $stmt->execute();
 
-    // $db->commit();
-    // echo 'Recipe deleted!'
+    $db->commit();
+    echo 'Recipe deleted!'
     } 
     catch (Exception $e) {
       $db->rollBack();
       echo $e;
+      echo 'Danger, Will Robinson!'
     }
 } 
 
