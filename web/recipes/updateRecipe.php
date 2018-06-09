@@ -140,7 +140,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
 }
 
     $db->commit();
-    echo $_POST['updatedId'];
+    echo $_POST['recipe_id'];
     echo $_POST['name'];
     echo $_POST['category'];
   } 
