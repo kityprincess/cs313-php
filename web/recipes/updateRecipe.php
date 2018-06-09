@@ -62,9 +62,11 @@ if(!empty($_GET['id'])){
     echo $rDetails['recipe'][0]['name'];
     echo '</h1>';
 
-    echo '<p>';
-
 	try{ 
+		echo "<pre>";
+		print_r($_POST);
+		echo "</pre>";
+		
 	$db->beginTransaction();  
 	$recipe_id = $_POST['recipe_id'];
 	//update name
