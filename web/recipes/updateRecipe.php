@@ -66,12 +66,12 @@ if(!empty($_GET['id'])){
 
 	try{ 
 	$db->beginTransaction();  
-	$updatedId = $_POST['updatedId'];
+	$recipe_id = $_POST['updatedId'];
 	//update name
 	  if (isset($_POST['name'])) {
 		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
-		$stmt = $db->prepare('UPDATE recipe SET name = :name WHERE id = :id;');
+		$stmt = $db->prepare('UPDATE recipe SET name = :name WHERE id = :recipe_id;');
 
 		$stmt->bindValue(':name', $name);
 		$stmt->execute();  
@@ -82,7 +82,7 @@ if(!empty($_GET['id'])){
 	  	$category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 	  	echo $category;
 	  	echo $id;
-	  	$stmt = $db->prepare('UPDATE recipe SET category = :category WHERE id = :id;');
+	  	$stmt = $db->prepare('UPDATE recipe SET category = :category WHERE id = :recipe_id;');
 
 		  $stmt->bindValue(':category', $category);
 		  $stmt->execute();
@@ -93,7 +93,7 @@ if(!empty($_GET['id'])){
 	  	$instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
 	  $lines = explode("\r\n", $instructions);
 	  
-	  $stmt = $db->prepare('UPDATE recipe SET instructions = :instructions WHERE id = :id;');
+	  $stmt = $db->prepare('UPDATE recipe SET instructions = :instructions WHERE id = :recipe_id;');
 
 	  $stmt->bindValue(':instructions', json_encode($lines));
 	  $stmt->execute();
@@ -115,8 +115,8 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
     'ingredient' => $ingredients[$i]  
   ));
   }
-
-  $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
+//'UPDATE recipe SET instructions = :instructions WHERE id = :id;'
+  $stmt = $db->prepare('UPDATE ingredients description = :insertData RETURNING id;');
 
   $stmt->bindValue(':insertData', json_encode($insertData));
   $stmt->execute();
@@ -140,9 +140,6 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
     echo $_POST['updatedId'];
     echo $_POST['name'];
     echo $_POST['category'];
-    //$row = $stmt->fetch();
-    // echo 'Congratulations! Your recipe has been entered!';
-    // echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $recipe_id . '</a>';
   } 
   catch (Exception $e) {
     $db->rollBack();
@@ -158,7 +155,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
             <input type="text" name="name" id="name">
             <label for="category">Category:</label>
             <input type="text" name="category" id="category">
-            <input type="text" name="updatedId" id="updatedId" value="<?php echo htmlspecialchars($id); ?>">
+            <input type="text" name="recipe_id" id="recipe_id" value="<?php echo htmlspecialchars($id); ?>">
           </fieldset>
           <fieldset class="row2">
             <legend>Ingredients</legend>
