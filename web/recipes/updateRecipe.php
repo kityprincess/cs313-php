@@ -84,8 +84,6 @@ if(!empty($_GET['id'])){
     }
 
     $rDetails = getRecipeInfo($db, $id);
-    $jing = json_decode($rDetails['ingredients'][0]['description'], TRUE);
-    $jins = json_decode($rDetails['recipe'][0]['instructions']);
 
     echo '<h1>';
     echo $rDetails['recipe'][0]['name'];
@@ -192,14 +190,29 @@ if(!empty($_GET['id'])){
             <input type="text" name="category" id="category" value="<?php echo htmlspecialchars($rDetails['recipe'][0]['category']); ?>">
             <input type="text" name="recipe_id" id="recipe_id" value="<?php echo htmlspecialchars($id); ?>">
           </fieldset>
-          
+          <fieldset class="row2">
+            <legend>Ingredients</legend>
+            <input type="button" value="Add Ingredient" onClick="addRow('ingTable')" />
+            <input type="button" value="Remove Ingredient" onClick="deleteRow('ingTable')" />    
+            <table id="ingTable" class="form" border="1">
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" required="required" name="chk[]" checked="checked" />
+                  </td>
+                  <td><input type="number" min="0" name="qty[]" id="qty" placeholder="Quantity">
+                  </td>
+                  <td><input type="text" name="unit[]" id="unit" placeholder="Unit">
+                  </td>
+                  <td><input type="text" name="ingredient[]" id="ingredient" placeholder="Ingredient">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </fieldset>
           <fieldset class="row3">
             <legend>Instructions</legend>
             <label for="Instructions">Put each step on its own line</label>
-            <textarea name="instructions"><?php 
-            	foreach ($jins as $part) {
-            		echo $part . '\n';
-            	}; ?></textarea>
+            <textarea name="instructions"></textarea>
           </fieldset>
           <input class="submit" type="submit" value="Update recipe"/>
       </form>
