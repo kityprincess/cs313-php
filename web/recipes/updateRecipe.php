@@ -196,10 +196,10 @@ if(!empty($_GET['id'])){
           <fieldset class="row3">
             <legend>Instructions</legend>
             <label for="Instructions">Put each step on its own line</label>
-            <textarea name="instructions" value="<?php 
+            <textarea name="instructions"><?php 
             	foreach ($jins as $part) {
             		echo $part . '<br/>';
-            	}; ?>"</textarea>
+            	}; ?></textarea>
           </fieldset>
           <input class="submit" type="submit" value="Update recipe"/>
       </form>
