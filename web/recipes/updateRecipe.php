@@ -66,7 +66,7 @@ if(!empty($_GET['id'])){
 
 	try{ 
 	$db->beginTransaction();  
-	$recipe_id = $_POST['updatedId'];
+	$recipe_id = $_POST['recipe_id'];
 	//update name
 	  if (isset($_POST['name'])) {
 		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
@@ -183,6 +183,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
           </fieldset>
           <input class="submit" type="submit" value="Update recipe"/>
       </form>
+      <p><em>Note</em>: When updating the ingredients or instructions, you must include ALL ingredients or instructions. </p>
     </div>
   </body>
 </html>
