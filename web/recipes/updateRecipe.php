@@ -77,24 +77,26 @@ if(!empty($_GET['id'])){
 		$stmt->execute();  
 	}
 
-//insert data into recipe table
-  if (isset($_POST['name']) && isset($_POST['instructions'])) {
-  $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-  $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
-  $lines = explode("\r\n", $instructions);
-  $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+		//update category
+	  if (isset($_POST['category'])) {
+	  	$category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
-  $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
+	  	$stmt = $db->prepare('UPDATE recipe category = :category) WHERE id = :id;');
 
-  $stmt->bindValue(':name', $name);
-  $stmt->bindValue(':instructions', json_encode($lines));
-  $stmt->bindValue(':category', $category);
-  $stmt->execute();
+	  $stmt->bindValue(':category', $category);
+	  $stmt->execute();
+	  }
 
-  //get recipe ID
-  $result = $stmt->fetch();
-  $recipe_id = $result['id'];
-}
+	 //update instructions
+	  if (isset($_POST['instructions'])) {
+	  	$instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
+	  $lines = explode("\r\n", $instructions);
+	  
+	  $stmt = $db->prepare('UPDATE recipe instructions = :instructions) WHERE id = :id;');
+
+	  $stmt->bindValue(':instructions', json_encode($lines));
+	  $stmt->execute();
+	}
 
 //insert data into ingredients table 
 if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])) {
