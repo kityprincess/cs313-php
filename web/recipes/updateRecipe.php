@@ -48,8 +48,6 @@ if(!empty($_GET['id'])){
         'SELECT
          r.id
         ,r.name
-        ,r.instructions
-        ,r.category
         FROM
          recipe r
         WHERE
@@ -80,7 +78,7 @@ if(!empty($_GET['id'])){
         // WHERE
         //  r.id = :id', $id);
 
-        // return $recipeInfo;
+        return $recipeInfo;
     }
 
     $rDetails = getRecipeInfo($db, $id);
@@ -90,7 +88,7 @@ if(!empty($_GET['id'])){
     echo '</h1>';
 
     echo '<p>';
-    
+
 	try{ 
 	$db->beginTransaction();  
 
@@ -165,7 +163,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
 
     <div class = "table">
       <form action="addRecipe.php" method="post">
-          <h1>Add your recipe</h1>
+          <h1>Update your recipe</h1>
           <fieldset class="row1">
             <label for="name">Name:</label>
             <input type="text" name="name" required="required" id="name">
