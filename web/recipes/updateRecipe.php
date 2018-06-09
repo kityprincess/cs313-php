@@ -133,16 +133,11 @@ if(!empty($_GET['id'])){
 // }
 
     $db->commit();
-
-    //$row = $stmt->fetch();
-    // echo 'Congratulations! Your recipe has been entered!';
-    // echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $recipe_id . '</a>';
   } 
   catch (Exception $e) {
     $db->rollBack();
     echo $e;
   }
-}
 ?>
     <div class = "table">
       <form action="addRecipe.php" method="post">
