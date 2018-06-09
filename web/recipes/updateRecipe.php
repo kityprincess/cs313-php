@@ -71,7 +71,7 @@ if(!empty($_GET['id'])){
 	$db->beginTransaction();  
 	$recipe_id = $_POST['recipe_id'];
 	//update name
-	  if (isset($_POST['name'])) {
+	  if (isset($_POST['name']) && ($_POST['name'] != '')) {
 		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
 		$stmt = $db->prepare('UPDATE recipe SET name = :name WHERE id = :recipe_id;');
@@ -82,7 +82,7 @@ if(!empty($_GET['id'])){
 	}
 
 		//update category
-	  if (isset($_POST['category'])) {
+	  if (isset($_POST['category']) && ($_POST['category'] != '')) {
 	  	$category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 	  	echo $category;
 	  	echo $id;
@@ -94,7 +94,7 @@ if(!empty($_GET['id'])){
 	  }
 
 	 //update instructions
-	  if (isset($_POST['instructions'])) {
+	  if (isset($_POST['instructions']) && ($_POST['instructions'] != '')) {
 	  	$instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
 	  $lines = explode("\r\n", $instructions);
 	  
