@@ -198,7 +198,7 @@ if(!empty($_GET['id'])){
             <label for="Instructions">Put each step on its own line</label>
             <textarea name="instructions"><?php 
             	foreach ($jins as $part) {
-            		echo $part . '<br/>';
+            		echo $part . '\n';
             	}; ?></textarea>
           </fieldset>
           <input class="submit" type="submit" value="Update recipe"/>
