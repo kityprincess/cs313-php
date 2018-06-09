@@ -66,7 +66,7 @@ if(!empty($_GET['id'])){
 
 	try{ 
 	$db->beginTransaction();  
-	$id = $_POST['id'];
+	$updatedId = $_POST['updatedId'];
 	//update name
 	  if (isset($_POST['name'])) {
 		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
@@ -137,7 +137,9 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
 }
 
     $db->commit();
-
+    echo $_POST['updatedId'];
+    echo $_POST['name'];
+    echo $_POST['category'];
     //$row = $stmt->fetch();
     // echo 'Congratulations! Your recipe has been entered!';
     // echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $recipe_id . '</a>';
@@ -156,7 +158,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
             <input type="text" name="name" id="name">
             <label for="category">Category:</label>
             <input type="text" name="category" id="category">
-            <input type="hidden" name="id" id="id" value="<?php echo htmlspecialchars($id); ?>">
+            <input type="hidden" name="updatedId" id="updatedId" value="<?php echo htmlspecialchars($id); ?>">
           </fieldset>
           <fieldset class="row2">
             <legend>Ingredients</legend>
