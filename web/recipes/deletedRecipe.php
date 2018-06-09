@@ -29,7 +29,7 @@ if(!empty($_GET['id'])){
       echo "<pre>";
       print_r($_GET);
       echo "</pre>";
-  //try{ 
+  try{ 
 
 
     // $db->beginTransaction();  
@@ -55,11 +55,11 @@ if(!empty($_GET['id'])){
 
     // $db->commit();
     // echo 'Recipe deleted!'
-    // } 
-    // catch (Exception $e) {
-    //   $db->rollBack();
-    //   echo $e;
-    // }
+    } 
+    catch (Exception $e) {
+      $db->rollBack();
+      echo $e;
+    }
 } 
 
 ?>
