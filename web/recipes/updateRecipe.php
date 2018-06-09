@@ -186,9 +186,9 @@ if(!empty($_GET['id'])){
           <h3>Update your recipe</h3>
           <fieldset class="row1">
             <label for="name">Name:</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($rDetails['recipe'][0]['name']); ?>">
             <label for="category">Category:</label>
-            <input type="text" name="category" id="category">
+            <input type="text" name="category" id="category" value="<?php echo htmlspecialchars($rDetails['recipe'][0]['category']); ?>">
             <input type="text" name="recipe_id" id="recipe_id" value="<?php echo htmlspecialchars($id); ?>">
           </fieldset>
           <fieldset class="row2">
