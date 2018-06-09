@@ -74,6 +74,7 @@ if(!empty($_GET['id'])){
 		$stmt = $db->prepare('UPDATE recipe SET name = :name WHERE id = :recipe_id;');
 
 		$stmt->bindValue(':name', $name);
+		$stmt->bindValue(':recipe_id', $recipe_id);
 		$stmt->execute();  
 	}
 
@@ -85,6 +86,7 @@ if(!empty($_GET['id'])){
 	  	$stmt = $db->prepare('UPDATE recipe SET category = :category WHERE id = :recipe_id;');
 
 		  $stmt->bindValue(':category', $category);
+		  $stmt->bindValue(':recipe_id', $recipe_id);
 		  $stmt->execute();
 	  }
 
@@ -96,6 +98,7 @@ if(!empty($_GET['id'])){
 	  $stmt = $db->prepare('UPDATE recipe SET instructions = :instructions WHERE id = :recipe_id;');
 
 	  $stmt->bindValue(':instructions', json_encode($lines));
+	  $stmt->bindValue(':recipe_id', $recipe_id);
 	  $stmt->execute();
 	}
 
