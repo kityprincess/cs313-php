@@ -102,7 +102,7 @@ if(!empty($_GET['id'])){
     $jins = json_decode($rDetails['recipe'][0]['instructions']);
     
     foreach ($jins as $part) {
-      echo '<li>' . $part . '</li>';
+      echo '<li>' . $part . '</li>' . '<br/>';
     }
     
    echo '<br/>';
