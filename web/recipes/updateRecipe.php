@@ -91,9 +91,9 @@ if(!empty($_GET['id'])){
 }
 
 	try{ 
-		echo "<pre>";
-		print_r($_POST);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($_POST);
+		// echo "</pre>";
 
 	$db->beginTransaction();  
 	$recipe_id = $_POST['recipe_id'];
@@ -170,9 +170,6 @@ if(!empty($_GET['id'])){
 // }
 
     $db->commit();
-    echo $_POST['recipe_id'];
-    echo $_POST['name'];
-    echo $_POST['category'];
   } 
   catch (Exception $e) {
     $db->rollBack();
@@ -188,7 +185,7 @@ if(!empty($_GET['id'])){
             <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($rDetails['recipe'][0]['name']); ?>">
             <label for="category">Category:</label>
             <input type="text" name="category" id="category" value="<?php echo htmlspecialchars($rDetails['recipe'][0]['category']); ?>">
-            <input type="text" name="recipe_id" id="recipe_id" value="<?php echo htmlspecialchars($id); ?>">
+            <input type="hidden" name="recipe_id" id="recipe_id" value="<?php echo htmlspecialchars($id); ?>">
           </fieldset>
           <fieldset class="row2">
             <legend>Ingredients</legend>

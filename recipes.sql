@@ -15,11 +15,11 @@ CREATE TABLE public.recipe
 
  CREATE TABLE public.media
  (id SERIAL PRIMARY KEY,
-  recipe_id INTEGER REFERENCES public.recipe(id),
+  recipe_id INTEGER REFERENCES public.recipe(id) ON DELETE CASCADE,
   description VARCHAR(30), 
   file BYTEA);
  
  CREATE TABLE public.recipe_ingredients
  (id SERIAL PRIMARY KEY,
-  recipe_id INTEGER REFERENCES public.recipe(id),
-  ingredients_id INTEGER REFERENCES public.ingredients(id));
+  recipe_id INTEGER REFERENCES public.recipe(id) ON DELETE CASCADE,
+  ingredients_id INTEGER REFERENCES public.ingredients(id) ON DELETE CASCADE);

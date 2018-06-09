@@ -115,7 +115,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
                 <tr>
                   <td><input type="checkbox" required="required" name="chk[]" checked="checked" />
                   </td>
-                  <td><input type="number" min="0" name="qty[]" required="required" id="qty" placeholder="Quantity">
+                  <td><input type="text" min="0" name="qty[]" required="required" id="qty" placeholder="Quantity">
                   </td>
                   <td><input type="text" name="unit[]" required="required" id="unit" placeholder="Unit">
                   </td>
