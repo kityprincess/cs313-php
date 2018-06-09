@@ -98,42 +98,42 @@ if(!empty($_GET['id'])){
 	  $stmt->execute();
 	}
 
-	// //insert data into ingredients table 
-	// if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])) {
+	//insert data into ingredients table 
+	if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])) {
 
-	//   $quantities  = filter_input(INPUT_POST, 'qty', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-	//   $units       = filter_input(INPUT_POST, 'unit',FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-	//   $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+	  $quantities  = filter_input(INPUT_POST, 'qty', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+	  $units       = filter_input(INPUT_POST, 'unit',FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+	  $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 	  
-	//   $insertData = array();
+	  $insertData = array();
 
-	//   for ($i = 0; $i < count($quantities); $i++) {
-	//     array_push($insertData, array(
-	//     'qty'        => $quantities[$i],
-	//     'unit'       => $units[$i],
-	//     'ingredient' => $ingredients[$i]  
-	//   ));
-	//   }
+	  for ($i = 0; $i < count($quantities); $i++) {
+	    array_push($insertData, array(
+	    'qty'        => $quantities[$i],
+	    'unit'       => $units[$i],
+	    'ingredient' => $ingredients[$i]  
+	  ));
+	  }
 
-	//   $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
+	  $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
 
-	//   $stmt->bindValue(':insertData', json_encode($insertData));
-	//   $stmt->execute();
+	  $stmt->bindValue(':insertData', json_encode($insertData));
+	  $stmt->execute();
 
-	// //get ingredients ID 
-	//   $iResult = $stmt->fetch();
-	//   $ingredients_id = $iResult['id'];
-	// }
+	//get ingredients ID 
+	  $iResult = $stmt->fetch();
+	  $ingredients_id = $iResult['id'];
+	}
 
-	// //insert data into recipe_ingredients table 
-	//   if (isset($recipe_id) && isset($ingredients_id)){
+	//insert data into recipe_ingredients table 
+	  if (isset($recipe_id) && isset($ingredients_id)){
 
-	//   $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
+	  $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
 	  
-	//   $stmt->bindValue('recipe_id', $recipe_id);
-	//   $stmt->bindValue('ingredients_id', $ingredients_id);
-	//   $stmt->execute();  
-	// }
+	  $stmt->bindValue('recipe_id', $recipe_id);
+	  $stmt->bindValue('ingredients_id', $ingredients_id);
+	  $stmt->execute();  
+	}
 
 	    $db->commit();
 
