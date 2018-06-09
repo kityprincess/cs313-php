@@ -44,12 +44,39 @@ if(!empty($_GET['id'])){
 
     function getRecipeInfo($db, $id)
     {
-        $recipeInfo['recipe']   = doOneQuery($db,
+                $recipeInfo['recipe']   = doOneQuery($db,
         'SELECT
          r.id
         ,r.name
+        ,r.instructions
+        ,r.category
         FROM
          recipe r
+        WHERE
+         r.id = :id', $id);
+
+        $recipeInfo['ingredients'] = doOneQuery($db,
+        'SELECT
+         r.id
+        ,i.description
+        FROM
+          recipe r
+            INNER JOIN
+          recipe_ingredients ri ON r.id = ri.recipe_id
+            INNER JOIN
+          ingredients i ON i.id = ri.ingredients_id
+        WHERE
+         r.id = :id', $id);
+        
+        $recipeInfo['media']    = doOneQuery($db,
+        'SELECT
+         r.id
+        ,m.description
+        ,m.file
+        FROM
+         recipe r
+          INNER JOIN
+         media m ON m.recipe_id = r.id
         WHERE
          r.id = :id', $id);
 
@@ -57,6 +84,7 @@ if(!empty($_GET['id'])){
     }
 
     $rDetails = getRecipeInfo($db, $id);
+    $jing = json_decode($rDetails['ingredients'][0]['description'], TRUE);
 
     echo '<h1>';
     echo $rDetails['recipe'][0]['name'];
@@ -166,19 +194,21 @@ if(!empty($_GET['id'])){
           <fieldset class="row2">
             <legend>Ingredients</legend>
             <input type="button" value="Add Ingredient" onClick="addRow('ingTable')" />
-            <input type="button" value="Remove Ingredient" onClick="deleteRow('ingTable')" />    
+            <!-- <input type="button" value="Remove Ingredient" onClick="deleteRow('ingTable')" />  -->   
             <table id="ingTable" class="form" border="1">
               <tbody>
-                <tr>
-                  <td><input type="checkbox" required="required" name="chk[]" checked="checked" />
-                  </td>
-                  <td><input type="number" min="0" name="qty[]" id="qty" placeholder="Quantity">
-                  </td>
-                  <td><input type="text" name="unit[]" id="unit" placeholder="Unit">
-                  </td>
-                  <td><input type="text" name="ingredient[]" id="ingredient" placeholder="Ingredient">
-                  </td>
-                </tr>
+              	<?php foreach ($jing AS $ing) {
+                echo '<tr>';
+                  echo '<td><input type="checkbox" required="required" name="chk[]" checked="checked" />';
+                  echo '</td>';
+                  echo '<td><input type="number" min="0" name="qty[]" id="qty" value="<?php echo htmlspecialchars($ing['qty']); ?>">';
+                  echo '</td>';
+                  echo '<td><input type="text" name="unit[]" id="unit" value="<?php echo htmlspecialchars($ing['unit']); ?>">';
+                  echo '</td>';
+                  echo '<td><input type="text" name="ingredient[]" id="ingredient" value="<?php echo htmlspecialchars($ing['ingredient']); ?>">';
+                  echo '</td>';
+                echo '</tr>';
+            	} ?>
               </tbody>
             </table>
           </fieldset>
