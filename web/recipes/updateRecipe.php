@@ -64,8 +64,8 @@ if(!empty($_GET['id'])){
 
     echo '<p>';
 
-	try{ 
-	$db->beginTransaction();  
+	// try{ 
+	// $db->beginTransaction();  
 		//update name
 	  if (isset($_POST['name']) {
 		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
@@ -74,7 +74,7 @@ if(!empty($_GET['id'])){
 
 		$stmt->bindValue(':name', $name);
 		$stmt->execute();  
-	}
+	// }
 
 //insert data into recipe table
 //   if (isset($_POST['name']) && isset($_POST['instructions'])) {
@@ -132,12 +132,12 @@ if(!empty($_GET['id'])){
 //   $stmt->execute();  
 // }
 
-    $db->commit();
-  } 
-  catch (Exception $e) {
-    $db->rollBack();
-    echo $e;
-  }
+  //   $db->commit();
+  // } 
+  // catch (Exception $e) {
+  //   $db->rollBack();
+  //   echo $e;
+  // }
 ?>
     <div class = "table">
       <form action="addRecipe.php" method="post">
