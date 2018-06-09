@@ -81,10 +81,10 @@ if(!empty($_GET['id'])){
 	  if (isset($_POST['category'])) {
 	  	$category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
-	  	$stmt = $db->prepare('UPDATE recipe category = :category) WHERE id = :id;');
+	  	$stmt = $db->prepare('UPDATE recipe SET category = :category WHERE id = :id;');
 
-	  $stmt->bindValue(':category', $category);
-	  $stmt->execute();
+		  $stmt->bindValue(':category', $category);
+		  $stmt->execute();
 	  }
 
 	 //update instructions
@@ -92,7 +92,7 @@ if(!empty($_GET['id'])){
 	  	$instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
 	  $lines = explode("\r\n", $instructions);
 	  
-	  $stmt = $db->prepare('UPDATE recipe instructions = :instructions) WHERE id = :id;');
+	  $stmt = $db->prepare('UPDATE recipe SET instructions = :instructions WHERE id = :id;');
 
 	  $stmt->bindValue(':instructions', json_encode($lines));
 	  $stmt->execute();
