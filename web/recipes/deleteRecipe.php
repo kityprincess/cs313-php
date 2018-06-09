@@ -31,9 +31,6 @@ $likeName = '%' . $name . '%';
 $stmt = $db->prepare('SELECT * FROM public.recipe WHERE LOWER(name) LIKE LOWER(:name)');
 $stmt->bindValue(':name', $likeName, PDO::PARAM_STR);
 $stmt->execute();
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-foreach($rows as $row) {
     echo '<p>';
     echo '<a href="deletedRecipe.php?id=' . $row['id'] . '">' . $row['name'] . '</a>';
     echo '</p>';
