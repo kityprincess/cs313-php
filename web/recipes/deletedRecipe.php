@@ -26,16 +26,40 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if(!empty($_GET['id'])){
     $id = $_GET['id'];
+  try{ 
+      // echo "<pre>";
+      // print_r($_POST);
+      // echo "</pre>";
 
-	$stmt = $db->prepare('DELETE FROM recipe_ingredients WHERE recipe_id = :id;');
+    $db->beginTransaction();  
+
+    //delete from recipe
+    $stmt = $db->prepare('DELETE FROM recipe WHERE id = :id');
     $stmt->bindValue(':id', $id);
     $stmt->execute();
+
+    //delete from recipe_ingredients
+    $stmt = $db->prepare('DELETE FROM recipe_ingredients WHERE recipe_id = :id RETURNING ingredients_id; ');
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+
+    //get ingredients ID
+    $result = $stmt->fetch();
+    $ingredients_id = $result['ingredients_id'];
+
+    //delete from ingredients
+    $stmt = $db->prepare('DELETE FROM ingredients WHERE id = :ingredients_id; ');
+    $stmt->bindValue(':ingredients_id', $ingredients_id);
+    $stmt->execute();
+
+    $db->commit();
     echo 'Recipe deleted!'
-  } 
-  catch (Exception $e) {
-    $db->rollBack();
-    echo $e;
-  }
+    } 
+    catch (Exception $e) {
+      $db->rollBack();
+      echo $e;
+    }
+} 
 
 ?>
   </body>
