@@ -152,7 +152,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
           <h3>Update your recipe</h3>
           <fieldset class="row1">
             <label for="name">Name:</label>
-            <input type="text" name="name" required="required" id="name">
+            <input type="text" name="name" id="name">
             <label for="category">Category:</label>
             <input type="text" name="category" id="category">
           </fieldset>
@@ -165,11 +165,11 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
                 <tr>
                   <td><input type="checkbox" required="required" name="chk[]" checked="checked" />
                   </td>
-                  <td><input type="number" min="0" name="qty[]" required="required" id="qty" placeholder="Quantity">
+                  <td><input type="number" min="0" name="qty[]" id="qty" placeholder="Quantity">
                   </td>
-                  <td><input type="text" name="unit[]" required="required" id="unit" placeholder="Unit">
+                  <td><input type="text" name="unit[]" id="unit" placeholder="Unit">
                   </td>
-                  <td><input type="text" name="ingredient[]" required="required" id="ingredient" placeholder="Ingredient">
+                  <td><input type="text" name="ingredient[]" id="ingredient" placeholder="Ingredient">
                   </td>
                 </tr>
               </tbody>
@@ -178,9 +178,9 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
           <fieldset class="row3">
             <legend>Instructions</legend>
             <label for="Instructions">Put each step on its own line</label>
-            <textarea name="instructions" required="required"></textarea>
+            <textarea name="instructions"></textarea>
           </fieldset>
-          <input class="submit" type="submit" value="Add new recipe"/>
+          <input class="submit" type="submit" value="Update recipe"/>
       </form>
     </div>
   </body>
