@@ -158,7 +158,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
             <input type="text" name="name" id="name">
             <label for="category">Category:</label>
             <input type="text" name="category" id="category">
-            <input type="hidden" name="updatedId" id="updatedId" value="<?php echo htmlspecialchars($id); ?>">
+            <input type="text" name="updatedId" id="updatedId" value="<?php echo htmlspecialchars($id); ?>">
           </fieldset>
           <fieldset class="row2">
             <legend>Ingredients</legend>
