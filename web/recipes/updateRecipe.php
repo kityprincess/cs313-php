@@ -199,7 +199,7 @@ if(!empty($_GET['id'])){
             <textarea name="instructions" value="<?php 
             	foreach ($jins as $part) {
             		echo $part . '<br/>';
-            	}?>"</textarea>
+            	}; ?>"</textarea>
           </fieldset>
           <input class="submit" type="submit" value="Update recipe"/>
       </form>
