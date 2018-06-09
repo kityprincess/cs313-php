@@ -67,13 +67,13 @@ if(!empty($_GET['id'])){
 	// try{ 
 	// $db->beginTransaction();  
 		//update name
-	  if (isset($_POST['name']) {
-		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+	 //  if (isset($_POST['name']) {
+		// $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
-		$stmt = $db->prepare('UPDATE recipe SET name = :name WHERE id = :id;');
+		// $stmt = $db->prepare('UPDATE recipe SET name = :name WHERE id = :id;');
 
-		$stmt->bindValue(':name', $name);
-		$stmt->execute();  
+		// $stmt->bindValue(':name', $name);
+		// $stmt->execute();  
 	// }
 
 //insert data into recipe table
@@ -140,7 +140,7 @@ if(!empty($_GET['id'])){
   // }
 ?>
     <div class = "table">
-      <form action="addRecipe.php" method="post">
+      <form action="updateRecipe.php" method="post">
           <h3>Update your recipe</h3>
           <fieldset class="row1">
             <label for="name">Name:</label>
