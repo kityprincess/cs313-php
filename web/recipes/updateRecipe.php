@@ -61,12 +61,13 @@ if(!empty($_GET['id'])){
     echo '<h1>';
     echo $rDetails['recipe'][0]['name'];
     echo '</h1>';
+}
 
 	try{ 
 		echo "<pre>";
 		print_r($_POST);
 		echo "</pre>";
-		
+
 	$db->beginTransaction();  
 	$recipe_id = $_POST['recipe_id'];
 	//update name
@@ -150,7 +151,7 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
     $db->rollBack();
     echo $e;
   }
-}
+
 ?>
     <div class = "table">
       <form action="updateRecipe.php" method="post">
