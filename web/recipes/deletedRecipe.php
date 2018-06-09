@@ -26,10 +26,11 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if(!empty($_GET['id'])){
     $id = $_GET['id'];
-  try{ 
       echo "<pre>";
       print_r($_GET);
       echo "</pre>";
+  //try{ 
+
 
     // $db->beginTransaction();  
 
@@ -53,12 +54,12 @@ if(!empty($_GET['id'])){
     // $stmt->execute();
 
     // $db->commit();
-    echo 'Recipe deleted!'
-    } 
-    catch (Exception $e) {
-      $db->rollBack();
-      echo $e;
-    }
+    // echo 'Recipe deleted!'
+    // } 
+    // catch (Exception $e) {
+    //   $db->rollBack();
+    //   echo $e;
+    // }
 } 
 
 ?>
