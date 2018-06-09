@@ -64,89 +64,89 @@ if(!empty($_GET['id'])){
 
     echo '<p>';
 
-	try{ 
-	$db->beginTransaction();
+// 	try{ 
+// 	$db->beginTransaction();
 
-	//update name
-	  if (isset($_POST['name']) {
-		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+// 	//update name
+// 	  if (isset($_POST['name']) {
+// 		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
 
-		$stmt = $db->prepare('UPDATE recipe name = :name) WHERE id = :id;');
+// 		$stmt = $db->prepare('UPDATE recipe name = :name) WHERE id = :id;');
 
-		$stmt->bindValue(':name', $name);
-		$stmt->execute();  
-	}
+// 		$stmt->bindValue(':name', $name);
+// 		$stmt->execute();  
+// 	}
 
-	//update category
-	  if (isset($_POST['category']) {
-	  	$category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+// 	//update category
+// 	  if (isset($_POST['category']) {
+// 	  	$category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
-	  	$stmt = $db->prepare('UPDATE recipe category = :category) WHERE id = :id;');
+// 	  	$stmt = $db->prepare('UPDATE recipe category = :category) WHERE id = :id;');
 
-	  $stmt->bindValue(':category', $category);
-	  $stmt->execute();
-	  }
+// 	  $stmt->bindValue(':category', $category);
+// 	  $stmt->execute();
+// 	  }
 
-	 //update instructions
-	  if (isset($_POST['instructions']) {
-	  	$instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
-	  $lines = explode("\r\n", $instructions);
+// 	 //update instructions
+// 	  if (isset($_POST['instructions']) {
+// 	  	$instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
+// 	  $lines = explode("\r\n", $instructions);
 	  
-	  $stmt = $db->prepare('UPDATE recipe instructions = :instructions) WHERE id = :id;');
+// 	  $stmt = $db->prepare('UPDATE recipe instructions = :instructions) WHERE id = :id;');
 
-	  $stmt->bindValue(':instructions', json_encode($lines));
-	  $stmt->execute();
-	}
+// 	  $stmt->bindValue(':instructions', json_encode($lines));
+// 	  $stmt->execute();
+// 	}
 
-	//insert data into ingredients table 
-	if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])) {
+// 	//insert data into ingredients table 
+// 	if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])) {
 
-	  $quantities  = filter_input(INPUT_POST, 'qty', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-	  $units       = filter_input(INPUT_POST, 'unit',FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-	  $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+// 	  $quantities  = filter_input(INPUT_POST, 'qty', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+// 	  $units       = filter_input(INPUT_POST, 'unit',FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+// 	  $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 	  
-	  $insertData = array();
+// 	  $insertData = array();
 
-	  for ($i = 0; $i < count($quantities); $i++) {
-	    array_push($insertData, array(
-	    'qty'        => $quantities[$i],
-	    'unit'       => $units[$i],
-	    'ingredient' => $ingredients[$i]  
-	  ));
-	  }
+// 	  for ($i = 0; $i < count($quantities); $i++) {
+// 	    array_push($insertData, array(
+// 	    'qty'        => $quantities[$i],
+// 	    'unit'       => $units[$i],
+// 	    'ingredient' => $ingredients[$i]  
+// 	  ));
+// 	  }
 
-	  $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
+// 	  $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
 
-	  $stmt->bindValue(':insertData', json_encode($insertData));
-	  $stmt->execute();
+// 	  $stmt->bindValue(':insertData', json_encode($insertData));
+// 	  $stmt->execute();
 
-	//get ingredients ID 
-	  $iResult = $stmt->fetch();
-	  $ingredients_id = $iResult['id'];
-	}
+// 	//get ingredients ID 
+// 	  $iResult = $stmt->fetch();
+// 	  $ingredients_id = $iResult['id'];
+// 	}
 
-	//insert data into recipe_ingredients table 
-	  if (isset($recipe_id) && isset($ingredients_id)){
+// 	//insert data into recipe_ingredients table 
+// 	  if (isset($recipe_id) && isset($ingredients_id)){
 
-	  $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
+// 	  $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
 	  
-	  $stmt->bindValue('recipe_id', $recipe_id);
-	  $stmt->bindValue('ingredients_id', $ingredients_id);
-	  $stmt->execute();  
-	}
+// 	  $stmt->bindValue('recipe_id', $recipe_id);
+// 	  $stmt->bindValue('ingredients_id', $ingredients_id);
+// 	  $stmt->execute();  
+// 	}
 
-	    $db->commit();
+// 	    $db->commit();
 
-	    //$row = $stmt->fetch();
-	    // echo 'Congratulations! Your recipe has been entered!';
-	    // echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $recipe_id . '</a>';
-	  } 
-	  catch (Exception $e) {
-	    $db->rollBack();
-	    echo $e;
-	  }
-}
+// 	    //$row = $stmt->fetch();
+// 	    // echo 'Congratulations! Your recipe has been entered!';
+// 	    // echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $recipe_id . '</a>';
+// 	  } 
+// 	  catch (Exception $e) {
+// 	    $db->rollBack();
+// 	    echo $e;
+// 	  }
+// }
 ?>
     <div class = "table">
       <form action="addRecipe.php" method="post">
