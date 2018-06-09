@@ -48,39 +48,12 @@ if(!empty($_GET['id'])){
         'SELECT
          r.id
         ,r.name
-        ,r.instructions
-        ,r.category
         FROM
          recipe r
         WHERE
          r.id = :id', $id);
 
-        // $recipeInfo['ingredients'] = doOneQuery($db,
-        // 'SELECT
-        //  r.id
-        // ,i.description
-        // FROM
-        //   recipe r
-        //     INNER JOIN
-        //   recipe_ingredients ri ON r.id = ri.recipe_id
-        //     INNER JOIN
-        //   ingredients i ON i.id = ri.ingredients_id
-        // WHERE
-        //  r.id = :id', $id);
-        
-        // $recipeInfo['media']    = doOneQuery($db,
-        // 'SELECT
-        //  r.id
-        // ,m.description
-        // ,m.file
-        // FROM
-        //  recipe r
-        //   INNER JOIN
-        //  media m ON m.recipe_id = r.id
-        // WHERE
-        //  r.id = :id', $id);
-
-        // return $recipeInfo;
+        return $recipeInfo;
     }
 
     $rDetails = getRecipeInfo($db, $id);
@@ -162,10 +135,9 @@ if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])
   }
 }
 ?>
-
     <div class = "table">
       <form action="addRecipe.php" method="post">
-          <h1>Update your recipe</h1>
+          <h3>Update your recipe</h3>
           <fieldset class="row1">
             <label for="name">Name:</label>
             <input type="text" name="name" required="required" id="name">
