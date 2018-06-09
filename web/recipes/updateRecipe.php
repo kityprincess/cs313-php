@@ -85,6 +85,7 @@ if(!empty($_GET['id'])){
 
     $rDetails = getRecipeInfo($db, $id);
     $jing = json_decode($rDetails['ingredients'][0]['description'], TRUE);
+    $jins = json_decode($rDetails['recipe'][0]['instructions']);
 
     echo '<h1>';
     echo $rDetails['recipe'][0]['name'];
@@ -195,7 +196,9 @@ if(!empty($_GET['id'])){
           <fieldset class="row3">
             <legend>Instructions</legend>
             <label for="Instructions">Put each step on its own line</label>
-            <textarea name="instructions"></textarea>
+            <textarea name="instructions" value="<?php echo htmlspecialchars(foreach ($jins as $part) {
+      echo '<li>' . $part . '</li>' . '<br/>';
+    }); ?>"</textarea>
           </fieldset>
           <input class="submit" type="submit" value="Update recipe"/>
       </form>
