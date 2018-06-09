@@ -53,31 +53,6 @@ if(!empty($_GET['id'])){
         WHERE
          r.id = :id', $id);
 
-        // $recipeInfo['ingredients'] = doOneQuery($db,
-        // 'SELECT
-        //  r.id
-        // ,i.description
-        // FROM
-        //   recipe r
-        //     INNER JOIN
-        //   recipe_ingredients ri ON r.id = ri.recipe_id
-        //     INNER JOIN
-        //   ingredients i ON i.id = ri.ingredients_id
-        // WHERE
-        //  r.id = :id', $id);
-        
-        // $recipeInfo['media']    = doOneQuery($db,
-        // 'SELECT
-        //  r.id
-        // ,m.description
-        // ,m.file
-        // FROM
-        //  recipe r
-        //   INNER JOIN
-        //  media m ON m.recipe_id = r.id
-        // WHERE
-        //  r.id = :id', $id);
-
         return $recipeInfo;
     }
 
@@ -90,83 +65,92 @@ if(!empty($_GET['id'])){
     echo '<p>';
 
 	try{ 
-	$db->beginTransaction();  
+	$db->beginTransaction();
 
-//insert data into recipe table
-  if (isset($_POST['name']) && isset($_POST['instructions'])) {
-  $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-  $instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
-  $lines = explode("\r\n", $instructions);
-  $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+	//update name
+	  if (isset($_POST['name']) {
+		$name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
 
-  $stmt = $db->prepare('INSERT INTO recipe (name, instructions, category) VALUES (:name, :instructions, :category) ON CONFLICT (name) DO UPDATE SET name = recipe.name RETURNING id;');
 
-  $stmt->bindValue(':name', $name);
-  $stmt->bindValue(':instructions', json_encode($lines));
-  $stmt->bindValue(':category', $category);
-  $stmt->execute();
+		$stmt = $db->prepare('UPDATE recipe name = :name) WHERE id = :id;');
 
-  //get recipe ID
-  $result = $stmt->fetch();
-  $recipe_id = $result['id'];
-}
+		$stmt->bindValue(':name', $name);
+		$stmt->execute();  
 
-//insert data into ingredients table 
-if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])) {
+	//update category
+	  if (isset($_POST['category']) {
+	  	$category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
 
-  $quantities  = filter_input(INPUT_POST, 'qty', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-  $units       = filter_input(INPUT_POST, 'unit',FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-  $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-  
-  $insertData = array();
+	  	$stmt = $db->prepare('UPDATE recipe category = :category) WHERE id = :id;');
 
-  for ($i = 0; $i < count($quantities); $i++) {
-    array_push($insertData, array(
-    'qty'        => $quantities[$i],
-    'unit'       => $units[$i],
-    'ingredient' => $ingredients[$i]  
-  ));
-  }
+	  $stmt->bindValue(':category', $category);
+	  $stmt->execute();
+	  }
 
-  $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
+	 //update instructions
+	  if (isset($_POST['instructions']) {
+	  	$instructions  = filter_input(INPUT_POST, 'instructions', FILTER_SANITIZE_STRING);
+	  $lines = explode("\r\n", $instructions);
+	  
+	  $stmt = $db->prepare('UPDATE recipe instructions = :instructions) WHERE id = :id;');
 
-  $stmt->bindValue(':insertData', json_encode($insertData));
-  $stmt->execute();
+	  $stmt->bindValue(':instructions', json_encode($lines));
+	  $stmt->execute();
+	}
 
-//get ingredients ID 
-  $iResult = $stmt->fetch();
-  $ingredients_id = $iResult['id'];
-}
+	// //insert data into ingredients table 
+	// if (isset($_POST['qty']) && isset($_POST['unit']) && isset($_POST['ingredient'])) {
 
-//insert data into recipe_ingredients table 
-  if (isset($recipe_id) && isset($ingredients_id)){
+	//   $quantities  = filter_input(INPUT_POST, 'qty', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+	//   $units       = filter_input(INPUT_POST, 'unit',FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+	//   $ingredients = filter_input(INPUT_POST, 'ingredient', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+	  
+	//   $insertData = array();
 
-  $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
-  
-  $stmt->bindValue('recipe_id', $recipe_id);
-  $stmt->bindValue('ingredients_id', $ingredients_id);
-  $stmt->execute();  
-}
+	//   for ($i = 0; $i < count($quantities); $i++) {
+	//     array_push($insertData, array(
+	//     'qty'        => $quantities[$i],
+	//     'unit'       => $units[$i],
+	//     'ingredient' => $ingredients[$i]  
+	//   ));
+	//   }
 
-    $db->commit();
+	//   $stmt = $db->prepare('INSERT INTO ingredients (description) VALUES (:insertData) RETURNING id;');
 
-    //$row = $stmt->fetch();
-    // echo 'Congratulations! Your recipe has been entered!';
-    // echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $recipe_id . '</a>';
-  } 
-  catch (Exception $e) {
-    $db->rollBack();
-    echo $e;
-  }
+	//   $stmt->bindValue(':insertData', json_encode($insertData));
+	//   $stmt->execute();
+
+	// //get ingredients ID 
+	//   $iResult = $stmt->fetch();
+	//   $ingredients_id = $iResult['id'];
+	// }
+
+	// //insert data into recipe_ingredients table 
+	//   if (isset($recipe_id) && isset($ingredients_id)){
+
+	//   $stmt = $db->prepare('INSERT INTO recipe_ingredients (recipe_id, ingredients_id) VALUES (:recipe_id, :ingredients_id);');
+	  
+	//   $stmt->bindValue('recipe_id', $recipe_id);
+	//   $stmt->bindValue('ingredients_id', $ingredients_id);
+	//   $stmt->execute();  
+	// }
+
+	    $db->commit();
+
+	    //$row = $stmt->fetch();
+	    // echo 'Congratulations! Your recipe has been entered!';
+	    // echo '<a href="recipeDetails.php?id=' . $recipe_id . '">' . $recipe_id . '</a>';
+	  } 
+	  catch (Exception $e) {
+	    $db->rollBack();
+	    echo $e;
+	  }
 }
 ?>
-
     <div class = "table">
       <form action="addRecipe.php" method="post">
-          <h1>Update your recipe</h1>
+          <h3>Update your recipe</h3>
           <fieldset class="row1">
-            <label for="name">Name:</label>
-            <input type="text" name="name" required="required" id="name">
             <label for="category">Category:</label>
             <input type="text" name="category" id="category">
           </fieldset>

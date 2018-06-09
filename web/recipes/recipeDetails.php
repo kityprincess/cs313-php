@@ -119,7 +119,7 @@ if(!empty($_GET['id'])){
     echo '</p>';
 
     echo '<a href="updateRecipe.php?id=' . $rDetails['recipe'][0]['id'] . '">Update Recipe</a>';
-    echo '<br/> . <br/>';
+    echo '<br/> <br/>';
     echo '<a href="index.php">Go back home!</a>';
 
     echo '</p>';
