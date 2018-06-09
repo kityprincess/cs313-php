@@ -76,6 +76,7 @@ if(!empty($_GET['id'])){
 
 		$stmt->bindValue(':name', $name);
 		$stmt->execute();  
+	}
 
 	//update category
 	  if (isset($_POST['category']) {
