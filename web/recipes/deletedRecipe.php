@@ -30,8 +30,8 @@ if(!empty($_GET['id'])){
       print_r($_GET);
       echo "</pre>";
   
-  try{ 
-    $db->beginTransaction();  
+  // try{ 
+  //   $db->beginTransaction();  
 
     //get ingredients_id
     $stmt = $db->prepare('SELECT ingredients_id FROM recipe_ingredients WHERE recipe_id = :id;');
@@ -58,14 +58,14 @@ if(!empty($_GET['id'])){
     // $stmt->bindValue(':id', $id);
     // $stmt->execute();
 
-    $db->commit();
-    echo 'Recipe deleted!'
-    } 
-    catch (Exception $e) {
-      $db->rollBack();
-      echo $e;
-      echo 'Danger, Will Robinson!'
-    }
+    // $db->commit();
+    // echo 'Recipe deleted!'
+    // } 
+    // catch (Exception $e) {
+    //   $db->rollBack();
+    //   echo $e;
+    //   echo 'Danger, Will Robinson!'
+    // }
 ?>
   </body>
 </html>
