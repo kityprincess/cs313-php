@@ -36,7 +36,7 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // }
 
 // else {
-    $stmt = $db->prepare('SELECT id name FROM public.recipe');
+    $stmt = $db->prepare('SELECT id, name FROM public.recipe');
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // }
