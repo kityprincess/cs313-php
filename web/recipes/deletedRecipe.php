@@ -43,6 +43,11 @@ if(!empty($_GET['id'])){
     print_r($ingredients_id);
     echo "</pre>";
   
+    //delete from recipe_ingredients
+    $stmt = $db->prepare('DELETE FROM recipe_ingredients WHERE recipe_id = :id; ');
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+
     //delete from ingredients
     $stmt = $db->prepare('DELETE FROM ingredients WHERE id = :ingredients_id;');
     $stmt->bindValue(':ingredients_id', $ingredients_id[0]['ingredients_id']);
@@ -50,11 +55,6 @@ if(!empty($_GET['id'])){
 
     //delete from recipe
     $stmt = $db->prepare('DELETE FROM recipe WHERE id = :id');
-    $stmt->bindValue(':id', $id);
-    $stmt->execute();
-
-    //delete from recipe_ingredients
-    $stmt = $db->prepare('DELETE FROM recipe_ingredients WHERE recipe_id = :id; ');
     $stmt->bindValue(':id', $id);
     $stmt->execute();
 
