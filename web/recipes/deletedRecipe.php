@@ -44,9 +44,9 @@ if(!empty($_GET['id'])){
     echo "</pre>";
   
     //delete from ingredients
-    $stmt = $db->prepare('DELETE FROM ingredients WHERE id = :ingredients_id;');
-    $stmt->bindValue(':ingredients_id', $ingredients_id);
-    $stmt->execute();
+    // $stmt = $db->prepare('DELETE FROM ingredients WHERE id = :ingredients_id;');
+    // $stmt->bindValue(':ingredients_id', $ingredients_id);
+    // $stmt->execute();
 
     // //delete from recipe
     // $stmt = $db->prepare('DELETE FROM recipe WHERE id = :id');
