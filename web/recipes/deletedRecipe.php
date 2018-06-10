@@ -35,7 +35,7 @@ if(!empty($_GET['id'])){
 
     //get ingredients_id
     $stmt = $db->prepare('SELECT ingredients_id FROM recipe_ingredients WHERE recipe_id = :id;');
-    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+    $stmt->bindValue(':id', $id,);
     $stmt->execute();
     $ingredients_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -43,10 +43,10 @@ if(!empty($_GET['id'])){
     print_r($ingredients_id);
     echo "</pre>";
   }  
-    // //delete from ingredients
-    // $stmt = $db->prepare('DELETE FROM ingredients WHERE id = :ingredients_id;');
-    // $stmt->bindValue(':ingredients_id', $ingredients_id);
-    // $stmt->execute();
+    //delete from ingredients
+    $stmt = $db->prepare('DELETE FROM ingredients WHERE id = :ingredients_id;');
+    $stmt->bindValue(':ingredients_id', $ingredients_id);
+    $stmt->execute();
 
     // //delete from recipe
     // $stmt = $db->prepare('DELETE FROM recipe WHERE id = :id');
@@ -58,14 +58,14 @@ if(!empty($_GET['id'])){
     // $stmt->bindValue(':id', $id);
     // $stmt->execute();
 
-    // $db->commit();
-    // echo 'Recipe deleted!'
-    // } 
-    // catch (Exception $e) {
-    //   $db->rollBack();
-    //   echo $e;
-    //   echo 'Danger, Will Robinson!'
-    // }
+    $db->commit();
+    echo 'Recipe deleted!'
+    } 
+    catch (Exception $e) {
+      $db->rollBack();
+      echo $e;
+      echo 'Danger, Will Robinson!'
+    }
 ?>
   </body>
 </html>
