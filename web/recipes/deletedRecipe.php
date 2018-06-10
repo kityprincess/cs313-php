@@ -35,7 +35,7 @@ if(!empty($_GET['id'])){
 
     //get ingredients_id
     $stmt = $db->prepare('SELECT ingredients_id FROM recipe_ingredients WHERE recipe_id = :id;');
-    $stmt->bindValue(':id', $id);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $ingredients_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
