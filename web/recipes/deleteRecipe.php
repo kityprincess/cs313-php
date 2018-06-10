@@ -25,9 +25,21 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $rows = null;
 
-$stmt = $db->prepare('SELECT name FROM public.recipe');
-$stmt->execute();
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if(!empty($_POST['name'])) {
+    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+    $likeName = '%' . $name . '%';
+
+    $stmt = $db->prepare('SELECT * FROM public.recipe WHERE LOWER(name) LIKE LOWER(:name)');
+    $stmt->bindValue(':name', $likeName, PDO::PARAM_STR);
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+else {
+    $stmt = $db->prepare('SELECT * FROM public.recipe');
+    $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 foreach($rows as $row) {
     echo '<p>';
