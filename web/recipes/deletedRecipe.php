@@ -30,8 +30,8 @@ if(!empty($_GET['id'])){
       print_r($_GET);
       echo "</pre>";
   
-  // try{ 
-  //   $db->beginTransaction();  
+  try{ 
+    $db->beginTransaction();  
 
     //get ingredients_id
     $stmt = $db->prepare('SELECT ingredients_id FROM recipe_ingredients WHERE recipe_id = :id;');
