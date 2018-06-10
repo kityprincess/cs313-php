@@ -29,6 +29,7 @@ if(!empty($_GET['id'])){
       echo "<pre>";
       print_r($_GET);
       echo "</pre>";
+  }
   try{ 
     $db->beginTransaction();  
 
@@ -65,8 +66,6 @@ if(!empty($_GET['id'])){
       echo $e;
       echo 'Danger, Will Robinson!'
     }
-} 
-
 ?>
   </body>
 </html>
