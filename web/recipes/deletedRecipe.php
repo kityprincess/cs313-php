@@ -35,7 +35,7 @@ if(!empty($_GET['id'])){
 
     //get ingredients_id
     $stmt = $db->prepare('SELECT ingredients_id FROM recipe_ingredients WHERE recipe_id = :id;');
-    $stmt->bindValue(':id', $id,);
+    $stmt->bindValue(':id', $id);
     $stmt->execute();
     $ingredients_id = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -45,9 +45,9 @@ if(!empty($_GET['id'])){
   
     //delete from ingredients
     $stmt = $db->prepare('DELETE FROM ingredients WHERE id = :ingredients_id;');
-    $stmt->bindValue(':ingredients_id', $ingredients_id[0]['ingredients_id']);
+    $stmt->bindValue(':ingredients_id', $ingredients_id);
     $stmt->execute();
-}
+
     // //delete from recipe
     // $stmt = $db->prepare('DELETE FROM recipe WHERE id = :id');
     // $stmt->bindValue(':id', $id);
